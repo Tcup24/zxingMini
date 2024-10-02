@@ -61,6 +61,12 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.17.0</version>
+      </plugin>
+
+      <plugin>
         <groupId>biz.aQute.bnd</groupId>
         <artifactId>bnd-maven-plugin</artifactId>
         <version>6.4.0</version>
