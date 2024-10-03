@@ -58,4 +58,39 @@ public final class GeoParsedResultTestCase extends Assert {
     assertEquals(uri == null ? contents.toLowerCase(Locale.ENGLISH) : uri, geoResult.getGeoURI());
   }
 
+  @Test
+  public void testGeoTwo() {
+    // Beispiel mit einfachen Geokoordinaten ohne zusätzliche Parameter oder URI
+    doTest("geo:37.7749,-122.4194",
+      37.7749,
+      -122.4194,
+      0.0,
+      null,
+      null);
+
+    // Beispiel mit Geokoordinaten und Höhe
+    doTest("geo:47.6205,-122.3493,15.0",
+      47.6205,
+      -122.3493,
+      15.0,
+      null,
+      null);
+
+    // Beispiel mit Geokoordinaten und Anfrageparameter
+    doTest("geo:40.6892,-74.0445?q=statue+of+liberty",
+      40.6892,
+      -74.0445,
+      0.0,
+      "q=statue+of+liberty",
+      null);
+
+    // Beispiel mit einer angegebenen URI
+    doTest("geo:51.5074,-0.1278",
+      51.5074,
+      -0.1278,
+      0.0,
+      null,
+      "geo:51.5074,-0.1278");
+  }
+
 }

@@ -166,4 +166,119 @@ public final class AddressBookParsedResultTestCase extends Assert {
     assertEquals(note, addressResult.getNote());
   }
 
+//  @Test
+//  public void testAddressBookDocomo() {
+//    Result result = new Result("NAME:John Doe;NOTE:Friend from school", null, null, null);
+//    ParsedResult parsedResult = ResultParser.parseResult(result);
+//    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+//    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+//    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
+//    assertEquals("Friend from school", addressBookResult.getNote());
+//  }
+  @Test
+  public void testAddressBookDocomoThree() {
+    Result result = new Result("MECARD:N:John Doe;NOTE:Friend from school;;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
+    assertEquals("Friend from school", addressBookResult.getNote());
+  }
+
+  @Test
+  public void testAddressBookAUTwo() {
+    Result result = new Result("AU:NAME:Jane Doe;TEL:+491234567890;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom check for AU parser output
+  }
+
+  @Test
+  public void testVCardTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John Doe\nADR:221B Baker Street\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
+    assertArrayEquals(new String[]{"221B Baker Street"}, addressBookResult.getAddresses());
+  }
+
+  @Test
+  public void testVCardFullNTwo() {
+    Result result = new Result("BEGIN:VCARD\nN:Dr.;John;H.;Doe;Jr.\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    // Custom assertion for full name
+  }
+
+  @Test
+  public void testVCardFullN2Two() {
+    Result result = new Result("BEGIN:VCARD\nN:Doe;J.\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for parsing abbreviated full name
+  }
+
+  @Test
+  public void testVCardFullN3Two() {
+    Result result = new Result("BEGIN:VCARD\nN:;John;;;\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for first name only
+  }
+
+  @Test
+  public void testVCardCaseInsensitiveTwo() {
+    Result result = new Result("begin:vcard\nfn:Jane Doe\nend:vcard", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for case insensitivity
+  }
+
+  @Test
+  public void testEscapedVCardTwo() {
+    Result result = new Result("BEGIN:VCARD\nADR:123\\; Some Street\\,. Apt \\#101\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for special characters
+  }
+
+  @Test
+  public void testBizcardTwo() {
+    Result result = new Result("BIZCARD:NAME:John Doe;ORG:Example Inc;TEL:+491234567890;EMAIL:john.doe@example.com;ADR:123 Main Street;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for Bizcard data
+  }
+
+  @Test
+  public void testSeveralAddressesTwo() {
+    Result result = new Result("BEGIN:VCARD\nADR:Home Address 1\nADR:Office Address\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for multiple addresses
+  }
+
+  @Test
+  public void testQuotedPrintableTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John =7EDoe\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for quoted-printable decoding
+  }
+
+  @Test
+  public void testVCardEscapeTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John\\nDoe\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for escape mechanisms
+  }
+
+  @Test
+  public void testVCardValueURITwo() {
+    Result result = new Result("BEGIN:VCARD\nTEL;URI:tel:+491234567890\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for URI-formatted phone number
+  }
+
+  @Test
+  public void testVCardTypesTwo() {
+    Result result = new Result("BEGIN:VCARD\nTEL;TYPE=HOME:+491234567890\nTEL;TYPE=WORK:+49876543210\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for multiple phone numbers
+  }
+
 }

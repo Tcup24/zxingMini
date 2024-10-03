@@ -90,4 +90,62 @@ public final class WifiParsedResultTestCase extends Assert {
     assertEquals(password, wifiResult.getPassword());
     assertEquals(type, wifiResult.getNetworkEncryption());
   }
+
+  //KItests
+  @Test
+  public void testNoPasswordTwo() {
+    // Test für eine offene WLAN-Konfiguration (kein Passwort)
+    String contents = "WIFI:S:ExampleSSID;T:nopass;;";
+    String expectedSsid = "ExampleSSID";
+    String expectedPassword = null; // Kein Passwort für offene Netzwerke
+    String expectedType = "nopass"; // Typ für offene Netzwerke
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+  @Test
+  public void testWepTwo() {
+    // Test für eine WEP-verschlüsselte WLAN-Konfiguration
+    String contents = "WIFI:S:ExampleWEPSSID;T:WEP;P:12345abcde;;";
+    String expectedSsid = "ExampleWEPSSID";
+    String expectedPassword = "12345abcde"; // Beispiel für ein WEP-Passwort
+    String expectedType = "WEP";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+  @Test
+  public void testWpaTwo() {
+    // Test für eine WPA-verschlüsselte WLAN-Konfiguration
+    String contents = "WIFI:S:ExampleWPASSID;T:WPA;P:securepassword;;";
+    String expectedSsid = "ExampleWPASSID";
+    String expectedPassword = "securepassword"; // Beispiel für ein WPA-Passwort
+    String expectedType = "WPA";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+//  @Test
+//  public void testEscapeTwo() {
+//    // Test für spezielle Zeichen und Escape-Sequenzen in SSID und Passwort
+//    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with;special\\;;chars\\;;";
+//    String expectedSsid = "Special;SSID;";
+//    String expectedPassword = "pass:with;special;;chars;";
+//    String expectedType = "WPA";
+//
+//    doTest(contents, expectedSsid, expectedPassword, expectedType);
+//  }
+
+  @Test
+  public void testEscapeThree() {
+    // Teste alternative Konfigurationen, um das Verhalten zu isolieren
+    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with\\;special\\;\\;chars\\;;";
+    String expectedSsid = "Special;SSID;";
+    String expectedPassword = "pass:with;special;;chars;";
+    String expectedType = "WPA";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+
 }

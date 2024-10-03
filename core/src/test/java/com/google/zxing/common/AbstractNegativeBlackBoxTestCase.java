@@ -16,24 +16,23 @@
 
 package com.google.zxing.common;
 
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.BufferedImageLuminanceSource;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.ReaderException;
-import com.google.zxing.Result;
+import com.google.zxing.*;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * This abstract class looks for negative results, i.e. it only allows a certain number of false
