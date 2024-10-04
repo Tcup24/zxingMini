@@ -19,10 +19,7 @@ package com.google.zxing.multi.qrcode;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
