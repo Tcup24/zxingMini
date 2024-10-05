@@ -167,7 +167,7 @@ public final class PerspectiveTransformTestCase extends Assert {
 //  }
 
   @Test
-  public void testQuadrilateralToQuadrilateralMini() {
+  public void testQuadrilateralToQuadrilateralThreeMini() {
     // Definiere die Punkte des ursprünglichen Vierecks und das Ziel-Viereck
     float[] sourceQuadrilateral = {0, 0, 2, 1, 1, 3, -1, 2}; // Ausgangs-Viereck
     float[] targetQuadrilateral = {0, 0, 1, 0, 1, 1, 0, 1}; // Ziel Quadrat

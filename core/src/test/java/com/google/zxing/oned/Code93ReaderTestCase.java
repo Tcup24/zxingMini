@@ -16,15 +16,15 @@
 
 package com.google.zxing.oned;
 
+import com.google.zxing.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.BitArray;
-import com.google.zxing.ChecksumException;
-import com.google.zxing.FormatException;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.Result;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Daisuke Makiuchi
