@@ -143,4 +143,66 @@ public final class MathUtilsTestCase extends Assert {
     }
     return count;
   }
+
+
+  //Mini
+  @Test
+  public void testRoundThreeMini() {
+    // Positive Ganzzahlen
+    assertEquals(3, MathUtils.round(3.4f));
+    assertEquals(4, MathUtils.round(3.5f));
+    assertEquals(4, MathUtils.round(3.6f));
+
+    // Negative Ganzzahlen
+    assertEquals(-3, MathUtils.round(-3.4f));
+    assertEquals(-4, MathUtils.round(-3.5f)); // Korrekte Erwartung -> -3.5 wird auf -4 gerundet
+    assertEquals(-4, MathUtils.round(-3.6f));
+
+    // Dezimalwerte
+    assertEquals(0, MathUtils.round(0.0f));
+    assertEquals(1, MathUtils.round(0.5f));
+    assertEquals(-1, MathUtils.round(-0.5f));
+
+    // Sonderfälle
+    assertEquals(Integer.MAX_VALUE, MathUtils.round(Float.POSITIVE_INFINITY));
+    assertEquals(Integer.MIN_VALUE, MathUtils.round(Float.NEGATIVE_INFINITY));
+    assertEquals(0, MathUtils.round(Float.NaN)); // Je nach Verhalten von NaN
+  }
+//  @Test
+//  public void testDistanceThreeMini() {
+//    // Test mit positiven Koordinaten
+//    assertEquals(5.0f, MathUtils.distance(0, 0, 3, 4), EPSILON); // Distanz zwischen (0,0) und (3,4): √(9 + 16) = 5.0
+//
+//    // Test mit negativen Koordinaten
+//    assertEquals(5.0f, MathUtils.distance(-1, -1, 2, 2), EPSILON); // Distanz zwischen (-1,-1) und (2,2): √((2+1)² + (2+1)²) = √(9 + 9) = √(18) = √(2*9) = 3√2 ≈ 5.0
+//
+//    // Test mit gemischten Koordinaten
+//    assertEquals(4.2426405f, MathUtils.distance(-1, 1, 2, -2), EPSILON); // Distanz zwischen (-1,1) und (2,-2): √((2 - (-1))² + ((-2) - 1)²) = √(3² + (-3)²) = √(9 + 9) = √(18) = 4.2426405...
+//
+//    // Test mit gleichen Punkten
+//    assertEquals(0.0f, MathUtils.distance(0, 0, 0, 0), EPSILON); // Distanz zwischen (0,0) und (0,0): 0.0
+//
+//    // Test mit erhöhten Koordinaten
+//    assertEquals(1.4142136f, MathUtils.distance(1, 1, 0, 0), EPSILON); // Distanz zwischen (1,1) und (0,0): √(1² + 1²) = √(2) ≈ 1.4142136
+//  }
+
+  @Test
+  public void testSumTwoMini() {
+    // Test mit Leer-Array
+    assertEquals(0, MathUtils.sum(new int[]{}));
+
+    // Test mit positiven Zahlen
+    assertEquals(10, MathUtils.sum(new int[]{1, 2, 3, 4}));
+
+    // Test mit negativen Zahlen
+    assertEquals(-10, MathUtils.sum(new int[]{-1, -2, -3, -4}));
+
+    // Test mit gemischten Zahlen
+    assertEquals(0, MathUtils.sum(new int[]{1, -1, 2, -2, 3, -3}));
+
+    // Test mit einem Einzelwert
+    assertEquals(5, MathUtils.sum(new int[]{5}));
+  }
+
+
 }

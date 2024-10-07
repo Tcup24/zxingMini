@@ -93,4 +93,23 @@ public final class GeoParsedResultTestCase extends Assert {
       "geo:51.5074,-0.1278");
   }
 
+
+  //Mini
+
+  @Test
+  public void testGeoCodeThreeMini() {
+    // Beispiel Geo-Code mit Latitude, Longitude, Altitude und Query
+    String geoCode = "geo:37.7749,-122.4194,10.0?q=somequery"; // 10.0 statt 10
+
+    // Erwartete Werte
+    double expectedLatitude = 37.7749;
+    double expectedLongitude = -122.4194;
+    double expectedAltitude = 10.0;
+    String expectedQuery = "q=somequery";
+    String expectedURI = geoCode.toLowerCase(Locale.ENGLISH); // Das geo ist in Kleinbuchstaben
+
+    // Aufruf der Testmethode mit den Inhalten
+    doTest(geoCode, expectedLatitude, expectedLongitude, expectedAltitude, expectedQuery, null);
+  }
+
 }

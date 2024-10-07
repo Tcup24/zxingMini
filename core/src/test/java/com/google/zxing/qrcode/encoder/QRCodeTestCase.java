@@ -211,7 +211,7 @@ public final class QRCodeTestCase extends Assert {
   //Mini:
 
   @Test
-  public void testQRCodeInitializationMini() {
+  public void testQRCodeInitializationTwoMini() {
     // Teste die Initialisierung von Parametern und die Abrufbarkeit der Werte
     Mode testMode = Mode.BYTE; // Erstellen Sie ein Beispiel für Mode
     ErrorCorrectionLevel testECLevel = ErrorCorrectionLevel.L; // Beispiel für Fehlerkorrekturstufe
@@ -237,7 +237,7 @@ public final class QRCodeTestCase extends Assert {
   }
 
   @Test
-  public void testToString1Mini() {
+  public void testToString1TwoMini() {
     // Teste die toString-Ausgabe eines neu erstellten QR-Codes
     String expectedOutput = "<<\n" +
       " mode: null\n" + // Initialwert ist null
@@ -316,7 +316,7 @@ public final class QRCodeTestCase extends Assert {
 
 
   @Test
-  public void testIsValidMaskPatternMini() {
+  public void testIsValidMaskPatternTwoMini() {
     // Teste gültige und ungültige Maskenmuster
     assertTrue(QRCode.isValidMaskPattern(0)); // Gültig
     assertTrue(QRCode.isValidMaskPattern(7)); // Gültig

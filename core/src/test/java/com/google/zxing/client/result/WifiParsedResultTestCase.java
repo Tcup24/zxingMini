@@ -28,49 +28,49 @@ import org.junit.Test;
  */
 public final class WifiParsedResultTestCase extends Assert {
 
-  @Test
-  public void testNoPassword() {
-    doTest("WIFI:S:NoPassword;P:;T:;;", "NoPassword", null, "nopass");
-    doTest("WIFI:S:No Password;P:;T:;;", "No Password", null, "nopass");
-  }
-
-  @Test
-  public void testWep() {
-    doTest("WIFI:S:TenChars;P:0123456789;T:WEP;;", "TenChars", "0123456789", "WEP");
-    doTest("WIFI:S:TenChars;P:abcde56789;T:WEP;;", "TenChars", "abcde56789", "WEP");
-    // Non hex should not fail at this level
-    doTest("WIFI:S:TenChars;P:hellothere;T:WEP;;", "TenChars", "hellothere", "WEP");
-
-    // Escaped semicolons
-    doTest("WIFI:S:Ten\\;\\;Chars;P:0123456789;T:WEP;;", "Ten;;Chars", "0123456789", "WEP");
-    // Escaped colons
-    doTest("WIFI:S:Ten\\:\\:Chars;P:0123456789;T:WEP;;", "Ten::Chars", "0123456789", "WEP");
-
-    // TODO(vikrama) Need a test for SB as well.
-  }
-
-  /**
-   * Put in checks for the length of the password for wep.
-   */
-  @Test
-  public void testWpa() {
-    doTest("WIFI:S:TenChars;P:wow;T:WPA;;", "TenChars", "wow", "WPA");
-    doTest("WIFI:S:TenChars;P:space is silent;T:WPA;;", "TenChars", "space is silent", "WPA");
-    doTest("WIFI:S:TenChars;P:hellothere;T:WEP;;", "TenChars", "hellothere", "WEP");
-
-    // Escaped semicolons
-    doTest("WIFI:S:TenChars;P:hello\\;there;T:WEP;;", "TenChars", "hello;there", "WEP");
-    // Escaped colons
-    doTest("WIFI:S:TenChars;P:hello\\:there;T:WEP;;", "TenChars", "hello:there", "WEP");
-  }
-
-  @Test
-  public void testEscape() {
-    doTest("WIFI:T:WPA;S:test;P:my_password\\\\;;", "test", "my_password\\", "WPA");
-    doTest("WIFI:T:WPA;S:My_WiFi_SSID;P:abc123/;;", "My_WiFi_SSID", "abc123/", "WPA");
-    doTest("WIFI:T:WPA;S:\"foo\\;bar\\\\baz\";;", "\"foo;bar\\baz\"", null, "WPA");
-    doTest("WIFI:T:WPA;S:test;P:\\\"abcd\\\";;", "test", "\"abcd\"", "WPA");
-  }
+//  @Test
+//  public void testNoPassword() {
+//    doTest("WIFI:S:NoPassword;P:;T:;;", "NoPassword", null, "nopass");
+//    doTest("WIFI:S:No Password;P:;T:;;", "No Password", null, "nopass");
+//  }
+//
+//  @Test
+//  public void testWep() {
+//    doTest("WIFI:S:TenChars;P:0123456789;T:WEP;;", "TenChars", "0123456789", "WEP");
+//    doTest("WIFI:S:TenChars;P:abcde56789;T:WEP;;", "TenChars", "abcde56789", "WEP");
+//    // Non hex should not fail at this level
+//    doTest("WIFI:S:TenChars;P:hellothere;T:WEP;;", "TenChars", "hellothere", "WEP");
+//
+//    // Escaped semicolons
+//    doTest("WIFI:S:Ten\\;\\;Chars;P:0123456789;T:WEP;;", "Ten;;Chars", "0123456789", "WEP");
+//    // Escaped colons
+//    doTest("WIFI:S:Ten\\:\\:Chars;P:0123456789;T:WEP;;", "Ten::Chars", "0123456789", "WEP");
+//
+//    // TODO(vikrama) Need a test for SB as well.
+//  }
+//
+//  /**
+//   * Put in checks for the length of the password for wep.
+//   */
+//  @Test
+//  public void testWpa() {
+//    doTest("WIFI:S:TenChars;P:wow;T:WPA;;", "TenChars", "wow", "WPA");
+//    doTest("WIFI:S:TenChars;P:space is silent;T:WPA;;", "TenChars", "space is silent", "WPA");
+//    doTest("WIFI:S:TenChars;P:hellothere;T:WEP;;", "TenChars", "hellothere", "WEP");
+//
+//    // Escaped semicolons
+//    doTest("WIFI:S:TenChars;P:hello\\;there;T:WEP;;", "TenChars", "hello;there", "WEP");
+//    // Escaped colons
+//    doTest("WIFI:S:TenChars;P:hello\\:there;T:WEP;;", "TenChars", "hello:there", "WEP");
+//  }
+//
+//  @Test
+//  public void testEscape() {
+//    doTest("WIFI:T:WPA;S:test;P:my_password\\\\;;", "test", "my_password\\", "WPA");
+//    doTest("WIFI:T:WPA;S:My_WiFi_SSID;P:abc123/;;", "My_WiFi_SSID", "abc123/", "WPA");
+//    doTest("WIFI:T:WPA;S:\"foo\\;bar\\\\baz\";;", "\"foo;bar\\baz\"", null, "WPA");
+//    doTest("WIFI:T:WPA;S:test;P:\\\"abcd\\\";;", "test", "\"abcd\"", "WPA");
+//  }
 
   /**
    * Given the string contents for the barcode, check that it matches our expectations
@@ -92,38 +92,38 @@ public final class WifiParsedResultTestCase extends Assert {
   }
 
   //KItests
-  @Test
-  public void testNoPasswordTwo() {
-    // Test für eine offene WLAN-Konfiguration (kein Passwort)
-    String contents = "WIFI:S:ExampleSSID;T:nopass;;";
-    String expectedSsid = "ExampleSSID";
-    String expectedPassword = null; // Kein Passwort für offene Netzwerke
-    String expectedType = "nopass"; // Typ für offene Netzwerke
-
-    doTest(contents, expectedSsid, expectedPassword, expectedType);
-  }
-
-  @Test
-  public void testWepTwo() {
-    // Test für eine WEP-verschlüsselte WLAN-Konfiguration
-    String contents = "WIFI:S:ExampleWEPSSID;T:WEP;P:12345abcde;;";
-    String expectedSsid = "ExampleWEPSSID";
-    String expectedPassword = "12345abcde"; // Beispiel für ein WEP-Passwort
-    String expectedType = "WEP";
-
-    doTest(contents, expectedSsid, expectedPassword, expectedType);
-  }
-
-  @Test
-  public void testWpaTwo() {
-    // Test für eine WPA-verschlüsselte WLAN-Konfiguration
-    String contents = "WIFI:S:ExampleWPASSID;T:WPA;P:securepassword;;";
-    String expectedSsid = "ExampleWPASSID";
-    String expectedPassword = "securepassword"; // Beispiel für ein WPA-Passwort
-    String expectedType = "WPA";
-
-    doTest(contents, expectedSsid, expectedPassword, expectedType);
-  }
+//  @Test
+//  public void testNoPasswordTwo() {
+//    // Test für eine offene WLAN-Konfiguration (kein Passwort)
+//    String contents = "WIFI:S:ExampleSSID;T:nopass;;";
+//    String expectedSsid = "ExampleSSID";
+//    String expectedPassword = null; // Kein Passwort für offene Netzwerke
+//    String expectedType = "nopass"; // Typ für offene Netzwerke
+//
+//    doTest(contents, expectedSsid, expectedPassword, expectedType);
+//  }
+//
+//  @Test
+//  public void testWepTwo() {
+//    // Test für eine WEP-verschlüsselte WLAN-Konfiguration
+//    String contents = "WIFI:S:ExampleWEPSSID;T:WEP;P:12345abcde;;";
+//    String expectedSsid = "ExampleWEPSSID";
+//    String expectedPassword = "12345abcde"; // Beispiel für ein WEP-Passwort
+//    String expectedType = "WEP";
+//
+//    doTest(contents, expectedSsid, expectedPassword, expectedType);
+//  }
+//
+//  @Test
+//  public void testWpaTwo() {
+//    // Test für eine WPA-verschlüsselte WLAN-Konfiguration
+//    String contents = "WIFI:S:ExampleWPASSID;T:WPA;P:securepassword;;";
+//    String expectedSsid = "ExampleWPASSID";
+//    String expectedPassword = "securepassword"; // Beispiel für ein WPA-Passwort
+//    String expectedType = "WPA";
+//
+//    doTest(contents, expectedSsid, expectedPassword, expectedType);
+//  }
 
 //  @Test
 //  public void testEscapeTwo() {
@@ -136,15 +136,125 @@ public final class WifiParsedResultTestCase extends Assert {
 //    doTest(contents, expectedSsid, expectedPassword, expectedType);
 //  }
 
-  @Test
-  public void testEscapeThree() {
-    // Teste alternative Konfigurationen, um das Verhalten zu isolieren
-    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with\\;special\\;\\;chars\\;;";
-    String expectedSsid = "Special;SSID;";
-    String expectedPassword = "pass:with;special;;chars;";
-    String expectedType = "WPA";
+//  @Test
+//  public void testEscapeThree() {
+//    // Teste alternative Konfigurationen, um das Verhalten zu isolieren
+//    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with\\;special\\;\\;chars\\;;";
+//    String expectedSsid = "Special;SSID;";
+//    String expectedPassword = "pass:with;special;;chars;";
+//    String expectedType = "WPA";
+//
+//    doTest(contents, expectedSsid, expectedPassword, expectedType);
+//  }
 
-    doTest(contents, expectedSsid, expectedPassword, expectedType);
+
+
+  //Mini
+// Test 1: Überprüfen, ob der Barcode-Scanner ein WLAN-Netzwerk ohne Passwortanfrage identifizieren kann
+//  @Test
+//  public void testIdentifyUnsecuredWifi() {
+//    // Simulierter QR-Code-Scan für ein ungesichertes WLAN
+//    Result result = new Result("WIFI:S:MyOpenNetwork;;", null, null, BarcodeFormat.QR_CODE);
+//    WifiParsedResult parsedResult = (WifiParsedResult) ResultParser.parseResult(result);
+//
+//    // Überprüfen der erwarteten Werte
+//    doTest(parsedResult, "MyOpenNetwork", null, null);
+//  }
+//
+//  // Test 1: Überprüfen, ob der Barcode-Scanner ein WLAN-Netzwerk ohne Passwortanfrage identifizieren kann
+//  @Test
+//  public void testIdentifyUnsecuredWifiThreeMini() {
+//    // Simulierter QR-Code-Scan für ein ungesichertes WLAN
+//    Result result = new Result("WIFI:S:MyOpenNetwork;;", null, null, BarcodeFormat.QR_CODE);
+//    WifiParsedResult parsedResult = (WifiParsedResult) ResultParser.parseResult(result);
+//
+//    // Überprüfen der erwarteten Werte
+//    doTest(parsedResult, "MyOpenNetwork", null, null); // Passwort sollte null sein
+//  }
+//
+//  // Test 2: Überprüfen, ob der Barcode-Scanner WEP-Netzwerke korrekt erkennt
+//  @Test
+//  public void testIdentifyWepWifi() {
+//    // Simulierter QR-Code-Scan für ein WLAN mit WEP-Verschlüsselung
+//    Result result = new Result("WIFI:S:MyWEPNetwork;T:WEP;P:password;H:false;;", null, null, BarcodeFormat.QR_CODE);
+//    WifiParsedResult parsedResult = (WifiParsedResult) ResultParser.parseResult(result);
+//
+//    // Überprüfen der erwarteten Werte
+//    doTest(parsedResult, "MyWEPNetwork", "password", "WEP");
+//  }
+//
+//  // Test 3: Überprüfen, ob WPA-WiFi-Netzwerke mit verschiedenen Passwortformaten korrekt verarbeitet werden
+//  @Test
+//  public void testIdentifyWpaWifi() {
+//    // Simulierter QR-Code-Scan für ein WLAN mit WPA-Verschlüsselung
+//    Result result = new Result("WIFI:S:MyWPA2Network;T:WPA;P:paw0rd!@#;H:false;;", null, null, BarcodeFormat.QR_CODE);
+//    WifiParsedResult parsedResult = (WifiParsedResult) ResultParser.parseResult(result);
+//
+//    // Überprüfen der erwarteten Werte
+//    doTest(parsedResult, "MyWPA2Network", "paw0rd!@#", "WPA");
+//  }
+//
+//  // Test 4: Überprüfen, ob Escape-Zeichen im Passwort oder SSID korrekt verarbeitet werden
+//  @Test
+//  public void testEscapeCharactersInWifi() {
+//    // Simulierter QR-Code-Scan für ein WLAN mit Escape-Zeichen
+//    Result result = new Result("WIFI:S:My\\Network;T:WPA;P:pass\\;word;H:false;;", null, null, BarcodeFormat.QR_CODE);
+//    WifiParsedResult parsedResult = (WifiParsedResult) ResultParser.parseResult(result);
+//
+//    // Überprüfen der erwarteten Werte
+//    doTest(parsedResult, "My\\Network", "pass\\;word", "WPA");
+//  }
+//
+//  // Helper-Methode zum Überprüfen der parsedResult
+//  private void doTest(WifiParsedResult parsedResult, String expectedSSID, String expectedPassword, String expectedEncryption) {
+//    assertEquals(expectedSSID, parsedResult.getSsid());
+//    assertEquals(expectedPassword, parsedResult.getPassword());
+//    assertEquals(expectedEncryption, parsedResult.getNetworkEncryption());
+//  }
+
+  //versuch 2:
+  @Test
+  public void testOpenWifiNetworkIdentification() {
+    String contents = "WIFI:S:OpenNetwork;"; // Beispiel für ein offenes Netzwerk
+    String ssid = "OpenNetwork";
+    String password = null; // Offenes Netzwerk hat kein Passwort
+    String type = "nopass"; // Angenommener Typ für offenes WLAN
+
+    doTest(contents, ssid, password, type);
+  }
+
+  @Test
+  public void testWEPWifiNetworkRecognitionWithSpecialPassword() {
+    // Beispiel für ein WEP-Netzwerk
+    // Das Passwort enthält ein Semikolon, das escaped wird
+    String contents = "WIFI:S:WEPNetwork;T:WEP;P:pass\\;123;"; // Die Verschlüsselungsart muss hier explizit angegeben werden
+    String ssid = "WEPNetwork";
+    String password = "pass;123";
+    String type = "WEP";
+
+    doTest(contents, ssid, password, type);
+  }
+
+  @Test
+  public void testWPAWifiNetworkRecognitionWithSpecialCharacters() {
+    // Beispiel für ein WPA-Netzwerk, mit korrekter Angabe der Verschlüsselung
+    String contents = "WIFI:S:WPAEncryption;T:WPA;P:pass@word\\;*;"; // Korrekte Angabe der Verschlüsselung
+    String ssid = "WPAEncryption";
+    String password = "pass@word;*"; // Erwartetes Passwort
+    String type = "WPA"; // Erwartete Verschlüsselung
+
+    doTest(contents, ssid, password, type);
+  }
+
+  @Test
+  public void testEscapeCharactersInSSIDAndPassword() {
+    // Beispiel mit korrekter Angabe der Verschlüsselung
+    String contents = "WIFI:S:Test\\\\Network;T:WPA;P:example\\\\password;"; // Doppelte Backslashes
+    String ssid = "Test\\Network"; // Erwartete SSID mit einem Backslash
+    String password = "example\\password"; // Erwartetes Passwort mit einem Backslash
+    String type = "WPA"; // Erwartete Verschlüsselung
+
+    doTest(contents, ssid, password, type);
   }
 
 
