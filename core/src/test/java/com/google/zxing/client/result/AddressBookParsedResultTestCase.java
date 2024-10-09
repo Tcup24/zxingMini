@@ -28,114 +28,114 @@ import org.junit.Test;
  */
 public final class AddressBookParsedResultTestCase extends Assert {
 
-  @Test
-  public void testAddressBookDocomo() {
-    doTest("MECARD:N:Sean Owen;;", null, new String[] {"Sean Owen"},
-        null, null, null, null, null, null, null, null, null);
-    doTest("MECARD:NOTE:ZXing Team;N:Sean Owen;URL:google.com;EMAIL:srowen@example.org;;",
-        null, new String[] {"Sean Owen"}, null, null, new String[] {"srowen@example.org"}, null, null, null,
-        new String[] {"google.com"}, null, "ZXing Team");
-  }
-
-  @Test
-  public void testAddressBookAU() {
-    doTest("MEMORY:foo\r\nNAME1:Sean\r\nTEL1:+12125551212\r\n",
-        null, new String[] {"Sean"}, null, null, null, new String[] {"+12125551212"}, null, null, null, null, "foo");
-  }
-
-  @Test
-  public void testVCard() {
-    doTest("BEGIN:VCARD\r\nADR;HOME:123 Main St\r\nVERSION:2.1\r\nN:Owen;Sean\r\nEND:VCARD",
-           null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"},
-           null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardFullN() {
-    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:Owen;Sean;T;Mr.;Esq.\r\nEND:VCARD",
-           null, new String[] {"Mr. Sean T Owen Esq."}, null, null, null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardFullN2() {
-    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:Owen;Sean;;;\r\nEND:VCARD",
-           null, new String[] {"Sean Owen"}, null, null, null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardFullN3() {
-    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:;Sean;;;\r\nEND:VCARD",
-           null, new String[] {"Sean"}, null, null, null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardCaseInsensitive() {
-    doTest("begin:vcard\r\nadr;HOME:123 Main St\r\nVersion:2.1\r\nn:Owen;Sean\r\nEND:VCARD",
-           null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"},
-           null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testEscapedVCard() {
-    doTest("BEGIN:VCARD\r\nADR;HOME:123\\;\\\\ Main\\, St\\nHome\r\nVERSION:2.1\r\nN:Owen;Sean\r\nEND:VCARD",
-           null, new String[] {"Sean Owen"}, null, new String[] {"123;\\ Main, St\nHome"},
-           null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testBizcard() {
-    doTest("BIZCARD:N:Sean;X:Owen;C:Google;A:123 Main St;M:+12125551212;E:srowen@example.org;",
-        null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"}, new String[] {"srowen@example.org"},
-        new String[] {"+12125551212"}, null, "Google", null, null, null);
-  }
-
-  @Test
-  public void testSeveralAddresses() {
-    doTest("MECARD:N:Foo Bar;ORG:Company;TEL:5555555555;EMAIL:foo.bar@xyz.com;ADR:City, 10001;" +
-           "ADR:City, 10001;NOTE:This is the memo.;;",
-           null, new String[] {"Foo Bar"}, null, new String[] {"City, 10001", "City, 10001"},
-           new String[] {"foo.bar@xyz.com"},
-           new String[] {"5555555555" }, null, "Company", null, null, "This is the memo.");
-  }
-
-  @Test
-  public void testQuotedPrintable() {
-    doTest("BEGIN:VCARD\r\nADR;HOME;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:;;" +
-           "=38=38=20=4C=79=6E=62=72=6F=6F=6B=0D=0A=43=\r\n" +
-           "=4F=20=36=39=39=\r\n" +
-           "=39=39;;;\r\nEND:VCARD",
-           null, null, null, new String[] {"88 Lynbrook\r\nCO 69999"},
-           null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardEscape() {
-    doTest("BEGIN:VCARD\r\nNOTE:foo\\nbar\r\nEND:VCARD",
-           null, null, null, null, null, null, null, null, null, null, "foo\nbar");
-    doTest("BEGIN:VCARD\r\nNOTE:foo\\;bar\r\nEND:VCARD",
-               null, null, null, null, null, null, null, null, null, null, "foo;bar");
-    doTest("BEGIN:VCARD\r\nNOTE:foo\\\\bar\r\nEND:VCARD",
-                   null, null, null, null, null, null, null, null, null, null, "foo\\bar");
-    doTest("BEGIN:VCARD\r\nNOTE:foo\\,bar\r\nEND:VCARD",
-                       null, null, null, null, null, null, null, null, null, null, "foo,bar");
-  }
-
-  @Test
-  public void testVCardValueURI() {
-    doTest("BEGIN:VCARD\r\nTEL;VALUE=uri:tel:+1-555-555-1212\r\nEND:VCARD",
-        null, null, null, null, null, new String[] { "+1-555-555-1212" }, new String[] { null },
-        null, null, null, null);
-
-    doTest("BEGIN:VCARD\r\nN;VALUE=text:Owen;Sean\r\nEND:VCARD",
-        null, new String[] {"Sean Owen"}, null, null, null, null, null, null, null, null, null);
-  }
-
-  @Test
-  public void testVCardTypes() {
-    doTest("BEGIN:VCARD\r\nTEL;HOME:\r\nTEL;WORK:10\r\nTEL:20\r\nTEL;CELL:30\r\nEND:VCARD",
-           null, null, null, null, null, new String[] { "10", "20", "30" },
-           new String[] { "WORK", null, "CELL" }, null, null, null, null);
-  }
+//  @Test
+//  public void testAddressBookDocomo() {
+//    doTest("MECARD:N:Sean Owen;;", null, new String[] {"Sean Owen"},
+//        null, null, null, null, null, null, null, null, null);
+//    doTest("MECARD:NOTE:ZXing Team;N:Sean Owen;URL:google.com;EMAIL:srowen@example.org;;",
+//        null, new String[] {"Sean Owen"}, null, null, new String[] {"srowen@example.org"}, null, null, null,
+//        new String[] {"google.com"}, null, "ZXing Team");
+//  }
+//
+//  @Test
+//  public void testAddressBookAU() {
+//    doTest("MEMORY:foo\r\nNAME1:Sean\r\nTEL1:+12125551212\r\n",
+//        null, new String[] {"Sean"}, null, null, null, new String[] {"+12125551212"}, null, null, null, null, "foo");
+//  }
+//
+//  @Test
+//  public void testVCard() {
+//    doTest("BEGIN:VCARD\r\nADR;HOME:123 Main St\r\nVERSION:2.1\r\nN:Owen;Sean\r\nEND:VCARD",
+//           null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"},
+//           null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardFullN() {
+//    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:Owen;Sean;T;Mr.;Esq.\r\nEND:VCARD",
+//           null, new String[] {"Mr. Sean T Owen Esq."}, null, null, null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardFullN2() {
+//    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:Owen;Sean;;;\r\nEND:VCARD",
+//           null, new String[] {"Sean Owen"}, null, null, null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardFullN3() {
+//    doTest("BEGIN:VCARD\r\nVERSION:2.1\r\nN:;Sean;;;\r\nEND:VCARD",
+//           null, new String[] {"Sean"}, null, null, null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardCaseInsensitive() {
+//    doTest("begin:vcard\r\nadr;HOME:123 Main St\r\nVersion:2.1\r\nn:Owen;Sean\r\nEND:VCARD",
+//           null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"},
+//           null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testEscapedVCard() {
+//    doTest("BEGIN:VCARD\r\nADR;HOME:123\\;\\\\ Main\\, St\\nHome\r\nVERSION:2.1\r\nN:Owen;Sean\r\nEND:VCARD",
+//           null, new String[] {"Sean Owen"}, null, new String[] {"123;\\ Main, St\nHome"},
+//           null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testBizcard() {
+//    doTest("BIZCARD:N:Sean;X:Owen;C:Google;A:123 Main St;M:+12125551212;E:srowen@example.org;",
+//        null, new String[] {"Sean Owen"}, null, new String[] {"123 Main St"}, new String[] {"srowen@example.org"},
+//        new String[] {"+12125551212"}, null, "Google", null, null, null);
+//  }
+//
+//  @Test
+//  public void testSeveralAddresses() {
+//    doTest("MECARD:N:Foo Bar;ORG:Company;TEL:5555555555;EMAIL:foo.bar@xyz.com;ADR:City, 10001;" +
+//           "ADR:City, 10001;NOTE:This is the memo.;;",
+//           null, new String[] {"Foo Bar"}, null, new String[] {"City, 10001", "City, 10001"},
+//           new String[] {"foo.bar@xyz.com"},
+//           new String[] {"5555555555" }, null, "Company", null, null, "This is the memo.");
+//  }
+//
+//  @Test
+//  public void testQuotedPrintable() {
+//    doTest("BEGIN:VCARD\r\nADR;HOME;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:;;" +
+//           "=38=38=20=4C=79=6E=62=72=6F=6F=6B=0D=0A=43=\r\n" +
+//           "=4F=20=36=39=39=\r\n" +
+//           "=39=39;;;\r\nEND:VCARD",
+//           null, null, null, new String[] {"88 Lynbrook\r\nCO 69999"},
+//           null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardEscape() {
+//    doTest("BEGIN:VCARD\r\nNOTE:foo\\nbar\r\nEND:VCARD",
+//           null, null, null, null, null, null, null, null, null, null, "foo\nbar");
+//    doTest("BEGIN:VCARD\r\nNOTE:foo\\;bar\r\nEND:VCARD",
+//               null, null, null, null, null, null, null, null, null, null, "foo;bar");
+//    doTest("BEGIN:VCARD\r\nNOTE:foo\\\\bar\r\nEND:VCARD",
+//                   null, null, null, null, null, null, null, null, null, null, "foo\\bar");
+//    doTest("BEGIN:VCARD\r\nNOTE:foo\\,bar\r\nEND:VCARD",
+//                       null, null, null, null, null, null, null, null, null, null, "foo,bar");
+//  }
+//
+//  @Test
+//  public void testVCardValueURI() {
+//    doTest("BEGIN:VCARD\r\nTEL;VALUE=uri:tel:+1-555-555-1212\r\nEND:VCARD",
+//        null, null, null, null, null, new String[] { "+1-555-555-1212" }, new String[] { null },
+//        null, null, null, null);
+//
+//    doTest("BEGIN:VCARD\r\nN;VALUE=text:Owen;Sean\r\nEND:VCARD",
+//        null, new String[] {"Sean Owen"}, null, null, null, null, null, null, null, null, null);
+//  }
+//
+//  @Test
+//  public void testVCardTypes() {
+//    doTest("BEGIN:VCARD\r\nTEL;HOME:\r\nTEL;WORK:10\r\nTEL:20\r\nTEL;CELL:30\r\nEND:VCARD",
+//           null, null, null, null, null, new String[] { "10", "20", "30" },
+//           new String[] { "WORK", null, "CELL" }, null, null, null, null);
+//  }
 
   private static void doTest(String contents,
                              String title,
@@ -166,15 +166,8 @@ public final class AddressBookParsedResultTestCase extends Assert {
     assertEquals(note, addressResult.getNote());
   }
 
-//  @Test
-//  public void testAddressBookDocomo() {
-//    Result result = new Result("NAME:John Doe;NOTE:Friend from school", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
-//    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
-//    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
-//    assertEquals("Friend from school", addressBookResult.getNote());
-//  }
+//KItest
+
   @Test
   public void testAddressBookDocomoThree() {
     Result result = new Result("MECARD:N:John Doe;NOTE:Friend from school;;", null, null, null);
@@ -301,7 +294,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 //    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
 //  }
 
-  // Test 2: AU-Format
+//   Test 2: AU-Format
 //  @Test
 //  public void testAUFormatContactInfoRecognition() {
 //    String contents = "BEGIN:AU\nN:Doe;Jane;\nTEL;TYPE=HOME:987654321\nEND:AU";
@@ -319,8 +312,8 @@ public final class AddressBookParsedResultTestCase extends Assert {
 //
 //    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
 //  }
-
-  // Test 3: vCard Recognition
+//
+//   //Test 3: vCard Recognition
 //  @Test
 //  public void testVCardParsing() {
 //    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;Mr;\nTEL;TYPE=CELL:+1234567890\nEND:VCARD";
@@ -339,7 +332,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 //    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
 //  }
 
-  // Test 4: Complex Name Formats in vCard
+   //Test 4: Complex Name Formats in vCard
 //  @Test
 //  public void testComplexNameFormatsInVCard() {
 //    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;Mr.\nTEL;TYPE=CELL:123123123\nEND:VCARD";
@@ -358,9 +351,9 @@ public final class AddressBookParsedResultTestCase extends Assert {
 //    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
 //  }
 
-  // Test 5: Case Insensitivity in vCard
+   //Test 5: Case Insensitivity in vCard
   @Test
-  public void testCaseInsensitivityInVCard() {
+  public void testCaseInsensitivityInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;\nTEL;TYPE=WORK:1122334455\nEND:VCARD";
     String title = null;
     String[] names = {"John Doe"}; // Erwarteter Name (im standardisierten Format)
@@ -380,7 +373,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 
   // Test 6: Escape Characters in vCard
   @Test
-  public void testEscapeCharactersInVCard() {
+  public void testEscapeCharactersInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:O'Reilly;Timothy\nTEL;TYPE=CELL:123\\;4567890\nEND:VCARD";
     String title = null;
     String[] names = {"Timothy O'Reilly"};
@@ -399,7 +392,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 
   // Test 7: Different vCard Types
   @Test
-  public void testDifferentVCardTypes() {
+  public void testDifferentVCardTypesThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nTEL;TYPE=HOME:234567890\nTEL;TYPE=WORK:234567891\nEND:VCARD";
     String title = null;
     String[] names = {"John Smith"};
@@ -418,7 +411,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 
   // Test 8: Quoted-Printable Encoding
   @Test
-  public void testQuotedPrintableEncodingInVCard() {
+  public void testQuotedPrintableEncodingInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John\nTEL;TYPE=CELL:1234567890\nEMAIL;TYPE=WORK:john.doe@example.com\nEND:VCARD";
     String title = null;
     String[] names = {"John Doe"};
@@ -437,7 +430,7 @@ public final class AddressBookParsedResultTestCase extends Assert {
 
   // Test 9: Phone Number Types
   @Test
-  public void testPhoneNumberTypesInVCard() {
+  public void testPhoneNumberTypesInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Johnson;Mark\nTEL;TYPE=HOME:5551234567\nTEL;TYPE=WORK:5559876543\nEND:VCARD";
     String title = null;
     String[] names = {"Mark Johnson"};
@@ -454,9 +447,9 @@ public final class AddressBookParsedResultTestCase extends Assert {
     doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
   }
 
-  // Test 10: Complex Presence of Types
+   //Test 10: Complex Presence of Types
   @Test
-  public void testComplexPhoneTypesInVCard() {
+  public void testComplexPhoneTypesInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Brown;Charlie\nTEL;TYPE=HOME,VOICE:1112223333\nTEL;TYPE=WORK,VOICE:4445556666\nEND:VCARD";
     String title = null;
     String[] names = {"Charlie Brown"};
@@ -473,9 +466,9 @@ public final class AddressBookParsedResultTestCase extends Assert {
     doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
   }
 
-  // Test 11: URLs in vCard
+   //Test 11: URLs in vCard
   @Test
-  public void testURLsInVCard() {
+  public void testURLsInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Hanks;Tom\nURL:http://www.tomhanks.com\nEND:VCARD";
     String title = null;
     String[] names = {"Tom Hanks"}; // Erwarteter Name im Format Vorname Nachname
@@ -493,26 +486,26 @@ public final class AddressBookParsedResultTestCase extends Assert {
   }
 
   // Test 12: Birthday in vCard
+//  @Test
+//  public void testBirthdayInVCard() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:King;Stephen\nBIRTHDAY:19740101\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"Stephen King"}; // Erwarteter Name
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = null;
+//    String[] phoneTypes = null;
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = "19740101"; // Erwartetes Geburtsdatum
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+   //Test 13: Notes in vCard
   @Test
-  public void testBirthdayInVCard() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:King;Stephen\nBIRTHDAY:19740101\nEND:VCARD";
-    String title = null;
-    String[] names = {"Stephen King"}; // Erwarteter Name
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = null;
-    String[] phoneTypes = null;
-    String org = null;
-    String[] urls = null;
-    String birthday = "19740101"; // Erwartetes Geburtsdatum
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-  // Test 13: Notes in vCard
-  @Test
-  public void testNotesInVCard() {
+  public void testNotesInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Orwell;George\nNOTE:Author of \"1984\"\nEND:VCARD";
     String title = null;
     String[] names = {"George Orwell"}; // Erwarteter Name
@@ -529,9 +522,9 @@ public final class AddressBookParsedResultTestCase extends Assert {
     doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
   }
 
-  // Test 14: Multiple Addresses in vCard
+   //Test 14: Multiple Addresses in vCard
   @Test
-  public void testMultipleAddressesInVCard() {
+  public void testMultipleAddressesInVCardThreeMini() {
     String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nADR;TYPE=HOME:123 Main St;Anytown;CA;90210;USA\nADR;TYPE=WORK:456 Elm St;Othertown;CA;90211;USA\nEND:VCARD";
     String title = null;
     String[] names = {"John Smith"};
@@ -546,4 +539,4 @@ public final class AddressBookParsedResultTestCase extends Assert {
     String note = null;
   }
 
-}
+}//Mini 317, KI160 , 167

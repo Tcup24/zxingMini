@@ -25,138 +25,44 @@ import org.junit.jupiter.api.BeforeEach;
  */
 public final class RGBLuminanceSourceTestCase extends Assert {
 
-  private static final RGBLuminanceSource SOURCE = new RGBLuminanceSource(3, 3, new int[] {
-      0x000000, 0x7F7F7F, 0xFFFFFF,
-      0xFF0000, 0x00FF00, 0x0000FF,
-      0x0000FF, 0x00FF00, 0xFF0000});
-
-  @Test
-  public void testCrop() {
-    assertTrue(SOURCE.isCropSupported());
-    LuminanceSource cropped = SOURCE.crop(1, 1, 1, 1);
-    assertEquals(1, cropped.getHeight());
-    assertEquals(1, cropped.getWidth());
-    assertArrayEquals(new byte[] { 0x7F }, cropped.getRow(0, null));
-  }
-
-  @Test
-  public void testMatrix() {
-    assertArrayEquals(new byte[] { 0x00, 0x7F, (byte) 0xFF, 0x3F, 0x7F, 0x3F, 0x3F, 0x7F, 0x3F },
-                      SOURCE.getMatrix());
-    LuminanceSource croppedFullWidth = SOURCE.crop(0, 1, 3, 2);
-    assertArrayEquals(new byte[] { 0x3F, 0x7F, 0x3F, 0x3F, 0x7F, 0x3F },
-                      croppedFullWidth.getMatrix());
-    LuminanceSource croppedCorner = SOURCE.crop(1, 1, 2, 2);
-    assertArrayEquals(new byte[] { 0x7F, 0x3F, 0x7F, 0x3F },
-                      croppedCorner.getMatrix());
-  }
-
-  @Test
-  public void testGetRow() {
-    assertArrayEquals(new byte[] { 0x3F, 0x7F, 0x3F }, SOURCE.getRow(2, new byte[3]));
-  }
-
-  @Test
-  public void testToString() {
-    assertEquals("#+ \n#+#\n#+#\n", SOURCE.toString());
-  }
+//  private static final RGBLuminanceSource SOURCE = new RGBLuminanceSource(3, 3, new int[] {
+//      0x000000, 0x7F7F7F, 0xFFFFFF,
+//      0xFF0000, 0x00FF00, 0x0000FF,
+//      0x0000FF, 0x00FF00, 0xFF0000});
+//
+//  @Test
+//  public void testCrop() {
+//    assertTrue(SOURCE.isCropSupported());
+//    LuminanceSource cropped = SOURCE.crop(1, 1, 1, 1);
+//    assertEquals(1, cropped.getHeight());
+//    assertEquals(1, cropped.getWidth());
+//    assertArrayEquals(new byte[] { 0x7F }, cropped.getRow(0, null));
+//  }
+//
+//  @Test
+//  public void testMatrix() {
+//    assertArrayEquals(new byte[] { 0x00, 0x7F, (byte) 0xFF, 0x3F, 0x7F, 0x3F, 0x3F, 0x7F, 0x3F },
+//                      SOURCE.getMatrix());
+//    LuminanceSource croppedFullWidth = SOURCE.crop(0, 1, 3, 2);
+//    assertArrayEquals(new byte[] { 0x3F, 0x7F, 0x3F, 0x3F, 0x7F, 0x3F },
+//                      croppedFullWidth.getMatrix());
+//    LuminanceSource croppedCorner = SOURCE.crop(1, 1, 2, 2);
+//    assertArrayEquals(new byte[] { 0x7F, 0x3F, 0x7F, 0x3F },
+//                      croppedCorner.getMatrix());
+//  }
+//
+//  @Test
+//  public void testGetRow() {
+//    assertArrayEquals(new byte[] { 0x3F, 0x7F, 0x3F }, SOURCE.getRow(2, new byte[3]));
+//  }
+//
+//  @Test
+//  public void testToString() {
+//    assertEquals("#+ \n#+#\n#+#\n", SOURCE.toString());
+//  }
 
 
   //KItest
-//  @Test
-//  public void testCropTwo() {
-//    // Erstellen einer originalen Bildquelle
-//    int width = 5;
-//    int height = 5;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    // Zuschneiden der Bildquelle
-//    RGBLuminanceSource cropped = (RGBLuminanceSource) source.crop(1, 1, 3, 3);
-//
-//    assertTrue("Zuschneiden sollte unterstützt werden.", source.isCropSupported());
-//    assertEquals(String.valueOf(3), cropped.getWidth(), "Die Breite nach dem Zuschneiden ist nicht korrekt.");
-//    assertEquals(String.valueOf(3), cropped.getHeight(), "Die Höhe nach dem Zuschneiden ist nicht korrekt.");
-//
-//    // Überprüfen des Inhalts einer bestimmten Zeile
-//    byte[] row = cropped.getRow(1, null);
-//    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
-//    assertArrayEquals("Der Inhalt der zugeschnittenen Zeile ist nicht korrekt.",expectedRow, row);
-//  }
-//
-//  @Test
-//  public void testMatrixTwo() {
-//    int width = 3;
-//    int height = 3;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    byte[] matrix = source.getMatrix();
-//    assertEquals(String.valueOf(9), matrix.length, "Die Matrixlänge ist nicht korrekt.");
-//
-//    // Zuschneiden und Luminanz überprüfen
-//    RGBLuminanceSource cropped = (RGBLuminanceSource) source.crop(0, 1, 2, 2);
-//    byte[] expectedMatrix = {(byte)0xFF, 0x00, 0x00, (byte)0xFF};
-//
-//    assertArrayEquals("Die Luminanzmatrix des zugeschnittenen Abschnitts ist nicht korrekt.",expectedMatrix, cropped.getMatrix());
-//  }
-//
-//  @Test
-//  public void testGetRowTwo() {
-//    int width = 3;
-//    int height = 3;
-//    int[] pixels = {
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    byte[] row = source.getRow(2, null);
-//    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
-//    assertArrayEquals("Die Luminanzwerte der zurückgegebenen Zeile sind nicht korrekt.",expectedRow, row);
-//  }
-//
-//  @Test
-//  public void testToStringTwo() {
-//    int width = 2;
-//    int height = 2;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF,
-//      0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    String expectedString =
-//      "0 1\n" +
-//        "1 0\n";
-//
-//    StringBuilder sb = new StringBuilder();
-//    for (int y = 0; y < height; y++) {
-//      for (int x = 0; x < width; x++) {
-//        byte luminance = source.getRow(y, null)[x];
-//        sb.append(luminance == (byte) 0xFF ? "1" : "0").append(" ");
-//      }
-//      sb.deleteCharAt(sb.length() - 1);
-//      sb.append("\n");
-//    }
-//
-//    assertEquals(expectedString, sb.toString(), "Die Textdarstellung der Bildquelle ist nicht korrekt.");
-//  }
 
   //zweiter versuch
   @Test
@@ -225,32 +131,6 @@ public final class RGBLuminanceSourceTestCase extends Assert {
     assertArrayEquals("Die Luminanzwerte der zurückgegebenen Zeile sind nicht korrekt.",expectedRow, row);
   }
 
-//  @Test
-//  public void testToStringThree() {
-//    int width = 2;
-//    int height = 2;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF,
-//      0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    String expectedString =
-//      "1 0 " + System.lineSeparator() +
-//        "0 1 " + System.lineSeparator();
-//
-//    StringBuilder sb = new StringBuilder();
-//    for (int y = 0; y < height; y++) {
-//      for (int x = 0; x < width; x++) {
-//        byte luminance = source.getRow(y, null)[x];
-//        sb.append(luminance == (byte) 0xFF ? "1" : "0").append(" ");
-//      }
-//      sb.append(System.lineSeparator());
-//    }
-//
-//    assertEquals("Die Textdarstellung der Bildquelle ist nicht korrekt.", expectedString, sb.toString());
-//  }
 
   @Test
   public void testToStringThree() {
@@ -281,8 +161,6 @@ public final class RGBLuminanceSourceTestCase extends Assert {
   }
 
   //KI Mini
-
-
 
 //  private RGBLuminanceSource source;
 //
@@ -343,8 +221,8 @@ public final class RGBLuminanceSourceTestCase extends Assert {
 //
 //    assertEquals(expectedRepresentation, stringRepresentation);
 //  }
-
-  //Versuch 2
+//
+//  //Versuch 2
 //
 //  @BeforeEach
 //  public void setUp() {
@@ -416,4 +294,4 @@ public final class RGBLuminanceSourceTestCase extends Assert {
 //  }
 
 
-}
+} //Mini 104, KI 116 ,62

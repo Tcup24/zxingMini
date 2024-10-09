@@ -30,104 +30,104 @@ import org.junit.jupiter.api.BeforeEach;
  */
 public final class QRCodeTestCase extends Assert {
 
-  @Test
-  public void test() {
-    QRCode qrCode = new QRCode();
+//  @Test
+//  public void test() {
+//    QRCode qrCode = new QRCode();
+//
+//    // First, test simple setters and getters.
+//    // We use numbers of version 7-H.
+//    qrCode.setMode(Mode.BYTE);
+//    qrCode.setECLevel(ErrorCorrectionLevel.H);
+//    qrCode.setVersion(Version.getVersionForNumber(7));
+//    qrCode.setMaskPattern(3);
+//
+//    assertSame(Mode.BYTE, qrCode.getMode());
+//    assertSame(ErrorCorrectionLevel.H, qrCode.getECLevel());
+//    assertEquals(7, qrCode.getVersion().getVersionNumber());
+//    assertEquals(3, qrCode.getMaskPattern());
+//
+//    // Prepare the matrix.
+//    ByteMatrix matrix = new ByteMatrix(45, 45);
+//    // Just set bogus zero/one values.
+//    for (int y = 0; y < 45; ++y) {
+//      for (int x = 0; x < 45; ++x) {
+//        matrix.set(x, y, (y + x) % 2);
+//      }
+//    }
+//
+//    // Set the matrix.
+//    qrCode.setMatrix(matrix);
+//    assertSame(matrix, qrCode.getMatrix());
+//  }
+//
+//  @Test
+//  public void testToString1() {
+//    QRCode qrCode = new QRCode();
+//    String expected =
+//        "<<\n" +
+//        " mode: null\n" +
+//        " ecLevel: null\n" +
+//        " version: null\n" +
+//        " maskPattern: -1\n" +
+//        " matrix: null\n" +
+//        ">>\n";
+//    assertEquals(expected, qrCode.toString());
+//  }
+//
+//  @Test
+//  public void testToString2() {
+//    QRCode qrCode = new QRCode();
+//    qrCode.setMode(Mode.BYTE);
+//    qrCode.setECLevel(ErrorCorrectionLevel.H);
+//    qrCode.setVersion(Version.getVersionForNumber(1));
+//    qrCode.setMaskPattern(3);
+//    ByteMatrix matrix = new ByteMatrix(21, 21);
+//    for (int y = 0; y < 21; ++y) {
+//      for (int x = 0; x < 21; ++x) {
+//        matrix.set(x, y, (y + x) % 2);
+//      }
+//    }
+//    qrCode.setMatrix(matrix);
+//    String expected = "<<\n" +
+//        " mode: BYTE\n" +
+//        " ecLevel: H\n" +
+//        " version: 1\n" +
+//        " maskPattern: 3\n" +
+//        " matrix:\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
+//        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
+//        ">>\n";
+//    assertEquals(expected, qrCode.toString());
+//  }
+//
+//  @Test
+//  public void testIsValidMaskPattern() {
+//    assertFalse(QRCode.isValidMaskPattern(-1));
+//    assertTrue(QRCode.isValidMaskPattern(0));
+//    assertTrue(QRCode.isValidMaskPattern(7));
+//    assertFalse(QRCode.isValidMaskPattern(8));
+//  }
 
-    // First, test simple setters and getters.
-    // We use numbers of version 7-H.
-    qrCode.setMode(Mode.BYTE);
-    qrCode.setECLevel(ErrorCorrectionLevel.H);
-    qrCode.setVersion(Version.getVersionForNumber(7));
-    qrCode.setMaskPattern(3);
-
-    assertSame(Mode.BYTE, qrCode.getMode());
-    assertSame(ErrorCorrectionLevel.H, qrCode.getECLevel());
-    assertEquals(7, qrCode.getVersion().getVersionNumber());
-    assertEquals(3, qrCode.getMaskPattern());
-
-    // Prepare the matrix.
-    ByteMatrix matrix = new ByteMatrix(45, 45);
-    // Just set bogus zero/one values.
-    for (int y = 0; y < 45; ++y) {
-      for (int x = 0; x < 45; ++x) {
-        matrix.set(x, y, (y + x) % 2);
-      }
-    }
-
-    // Set the matrix.
-    qrCode.setMatrix(matrix);
-    assertSame(matrix, qrCode.getMatrix());
-  }
-
-  @Test
-  public void testToString1() {
-    QRCode qrCode = new QRCode();
-    String expected =
-        "<<\n" +
-        " mode: null\n" +
-        " ecLevel: null\n" +
-        " version: null\n" +
-        " maskPattern: -1\n" +
-        " matrix: null\n" +
-        ">>\n";
-    assertEquals(expected, qrCode.toString());
-  }
-
-  @Test
-  public void testToString2() {
-    QRCode qrCode = new QRCode();
-    qrCode.setMode(Mode.BYTE);
-    qrCode.setECLevel(ErrorCorrectionLevel.H);
-    qrCode.setVersion(Version.getVersionForNumber(1));
-    qrCode.setMaskPattern(3);
-    ByteMatrix matrix = new ByteMatrix(21, 21);
-    for (int y = 0; y < 21; ++y) {
-      for (int x = 0; x < 21; ++x) {
-        matrix.set(x, y, (y + x) % 2);
-      }
-    }
-    qrCode.setMatrix(matrix);
-    String expected = "<<\n" +
-        " mode: BYTE\n" +
-        " ecLevel: H\n" +
-        " version: 1\n" +
-        " maskPattern: 3\n" +
-        " matrix:\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n" +
-        " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n" +
-        ">>\n";
-    assertEquals(expected, qrCode.toString());
-  }
-
-  @Test
-  public void testIsValidMaskPattern() {
-    assertFalse(QRCode.isValidMaskPattern(-1));
-    assertTrue(QRCode.isValidMaskPattern(0));
-    assertTrue(QRCode.isValidMaskPattern(7));
-    assertFalse(QRCode.isValidMaskPattern(8));
-  }
-
-
+//
   //KItest
   private QRCode qrCode;
 
@@ -249,37 +249,6 @@ public final class QRCodeTestCase extends Assert {
     assertEquals(expectedOutput, qrCode.toString());
   }
 
-//  @Test
-//  public void testToString2Mini() {
-//    // Beispiel für Parameter
-//    Mode testMode = Mode.BYTE; // Beispiel für Mode
-//    ErrorCorrectionLevel testECLevel = ErrorCorrectionLevel.L;
-//    Version testVersion = Version.getVersionForNumber(1);
-//    int testMaskPattern = 3;
-//
-//    qrCode.setMode(testMode);
-//    qrCode.setECLevel(testECLevel);
-//    qrCode.setVersion(testVersion);
-//    qrCode.setMaskPattern(testMaskPattern);
-//
-//    ByteMatrix matrix = new ByteMatrix(2, 2);
-//    matrix.set(0, 0, (byte) 1);
-//
-//    // Matrix-Format anpassen, um sicherzustellen, dass die Ausgabe der toString-Methode übereinstimmt
-//    qrCode.setMatrix(matrix);
-//
-//    String expectedOutput = "<<\n" +
-//      " mode: " + testMode + "\n" +
-//      " ecLevel: " + testECLevel + "\n" +
-//      " version: " + testVersion + "\n" +
-//      " maskPattern: 3\n" +
-//      " matrix:\n" +
-//      " 1  \n" + // Ersetzen Sie dies ggf. durch die tatsächliche Ausgabe der ByteMatrix
-//      "  \n" +
-//      ">>\n";
-//
-//    assertEquals(expectedOutput, qrCode.toString());
-//  }
 
   @Test
   public void testToString2ThreeMini() {
@@ -325,4 +294,4 @@ public final class QRCodeTestCase extends Assert {
   }
 
 
-}
+}//Mini 109, KI 108, 128

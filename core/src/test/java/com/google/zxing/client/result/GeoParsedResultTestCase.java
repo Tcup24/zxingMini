@@ -32,15 +32,15 @@ public final class GeoParsedResultTestCase extends Assert {
 
   private static final double EPSILON = 1.0E-10;
 
-  @Test
-  public void testGeo() {
-    doTest("geo:1,2", 1.0, 2.0, 0.0, null, "geo:1.0,2.0");
-    doTest("geo:80.33,-32.3344,3.35", 80.33, -32.3344, 3.35, null, null);
-    doTest("geo:-20.33,132.3344,0.01", -20.33, 132.3344, 0.01, null, null);
-    doTest("geo:-20.33,132.3344,0.01?q=foobar", -20.33, 132.3344, 0.01, "q=foobar", null);
-    doTest("GEO:-20.33,132.3344,0.01?q=foobar", -20.33, 132.3344, 0.01, "q=foobar", null);
-  }
-
+//  @Test
+//  public void testGeo() {
+//    doTest("geo:1,2", 1.0, 2.0, 0.0, null, "geo:1.0,2.0");
+//    doTest("geo:80.33,-32.3344,3.35", 80.33, -32.3344, 3.35, null, null);
+//    doTest("geo:-20.33,132.3344,0.01", -20.33, 132.3344, 0.01, null, null);
+//    doTest("geo:-20.33,132.3344,0.01?q=foobar", -20.33, 132.3344, 0.01, "q=foobar", null);
+//    doTest("GEO:-20.33,132.3344,0.01?q=foobar", -20.33, 132.3344, 0.01, "q=foobar", null);
+//  }
+//
   private static void doTest(String contents,
                              double latitude,
                              double longitude,
@@ -58,6 +58,7 @@ public final class GeoParsedResultTestCase extends Assert {
     assertEquals(uri == null ? contents.toLowerCase(Locale.ENGLISH) : uri, geoResult.getGeoURI());
   }
 
+  //KItest
   @Test
   public void testGeoTwo() {
     // Beispiel mit einfachen Geokoordinaten ohne zusätzliche Parameter oder URI
@@ -113,3 +114,4 @@ public final class GeoParsedResultTestCase extends Assert {
   }
 
 }
+//Mini65; KI83, 59

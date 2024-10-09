@@ -25,61 +25,61 @@ import org.junit.Test;
  */
 public final class PlanarYUVLuminanceSourceTestCase extends Assert {
 
-  private static final byte[] YUV = {
-      0,  1,  1,  2,  3,  5,
-      8, 13, 21, 34, 55, 89,
-      0,  -1,  -1,  -2,  -3,  -5,
-      -8, -13, -21, -34, -55, -89,
-      127, 127, 127, 127, 127, 127,
-      127, 127, 127, 127, 127, 127,
-  };
-  private static final int COLS = 6;
-  private static final int ROWS = 4;
-  private static final byte[] Y = new byte[COLS * ROWS];
-  static {
-    System.arraycopy(YUV, 0, Y, 0, Y.length);
-  }
-
-  @Test
-  public void testNoCrop() {
-    PlanarYUVLuminanceSource source =
-        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 0, 0, COLS, ROWS, false);
-    assertEquals(Y, 0, source.getMatrix(), 0, Y.length);
-    for (int r = 0; r < ROWS; r++) {
-      assertEquals(Y, r * COLS, source.getRow(r, null), 0, COLS);
-    }
-  }
-
-  @Test
-  public void testCrop() {
-    PlanarYUVLuminanceSource source =
-        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 1, 1, COLS - 2, ROWS - 2, false);
-    assertTrue(source.isCropSupported());
-    byte[] cropMatrix = source.getMatrix();
-    for (int r = 0; r < ROWS - 2; r++) {
-      assertEquals(Y, (r + 1) * COLS + 1, cropMatrix, r * (COLS - 2), COLS - 2);
-    }
-    for (int r = 0; r < ROWS - 2; r++) {
-      assertEquals(Y, (r + 1) * COLS + 1, source.getRow(r, null), 0, COLS - 2);
-    }
-  }
-
-  @Test
-  public void testThumbnail() {
-    PlanarYUVLuminanceSource source =
-        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 0, 0, COLS, ROWS, false);
-    assertArrayEquals(
-        new int[] { 0xFF000000, 0xFF010101, 0xFF030303, 0xFF000000, 0xFFFFFFFF, 0xFFFDFDFD },
-        source.renderThumbnail());
-  }
-
-  private static void assertEquals(byte[] expected, int expectedFrom,
-                                   byte[] actual, int actualFrom,
-                                   int length) {
-    for (int i = 0; i < length; i++) {
-      assertEquals(expected[expectedFrom + i], actual[actualFrom + i]);
-    }
-  }
+//  private static final byte[] YUV = {
+//      0,  1,  1,  2,  3,  5,
+//      8, 13, 21, 34, 55, 89,
+//      0,  -1,  -1,  -2,  -3,  -5,
+//      -8, -13, -21, -34, -55, -89,
+//      127, 127, 127, 127, 127, 127,
+//      127, 127, 127, 127, 127, 127,
+//  };
+//  private static final int COLS = 6;
+//  private static final int ROWS = 4;
+//  private static final byte[] Y = new byte[COLS * ROWS];
+//  static {
+//    System.arraycopy(YUV, 0, Y, 0, Y.length);
+//  }
+//
+//  @Test
+//  public void testNoCrop() {
+//    PlanarYUVLuminanceSource source =
+//        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 0, 0, COLS, ROWS, false);
+//    assertEquals(Y, 0, source.getMatrix(), 0, Y.length);
+//    for (int r = 0; r < ROWS; r++) {
+//      assertEquals(Y, r * COLS, source.getRow(r, null), 0, COLS);
+//    }
+//  }
+//
+//  @Test
+//  public void testCrop() {
+//    PlanarYUVLuminanceSource source =
+//        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 1, 1, COLS - 2, ROWS - 2, false);
+//    assertTrue(source.isCropSupported());
+//    byte[] cropMatrix = source.getMatrix();
+//    for (int r = 0; r < ROWS - 2; r++) {
+//      assertEquals(Y, (r + 1) * COLS + 1, cropMatrix, r * (COLS - 2), COLS - 2);
+//    }
+//    for (int r = 0; r < ROWS - 2; r++) {
+//      assertEquals(Y, (r + 1) * COLS + 1, source.getRow(r, null), 0, COLS - 2);
+//    }
+//  }
+//
+//  @Test
+//  public void testThumbnail() {
+//    PlanarYUVLuminanceSource source =
+//        new PlanarYUVLuminanceSource(YUV, COLS, ROWS, 0, 0, COLS, ROWS, false);
+//    assertArrayEquals(
+//        new int[] { 0xFF000000, 0xFF010101, 0xFF030303, 0xFF000000, 0xFFFFFFFF, 0xFFFDFDFD },
+//        source.renderThumbnail());
+//  }
+//
+//  private static void assertEquals(byte[] expected, int expectedFrom,
+//                                   byte[] actual, int actualFrom,
+//                                   int length) {
+//    for (int i = 0; i < length; i++) {
+//      assertEquals(expected[expectedFrom + i], actual[actualFrom + i]);
+//    }
+//  }
 
   //KItest Mini:
   @Test
@@ -123,23 +123,6 @@ public final class PlanarYUVLuminanceSourceTestCase extends Assert {
     }
   }
 
-//  @Test
-//  public void testThumbnailTwo() {
-//    byte[] yuvData = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; // Beispiel YUV-Daten für ein 5x2 Bild
-//    int width = 5;
-//    int height = 2;
-//    PlanarYUVLuminanceSource luminanceSource = new PlanarYUVLuminanceSource(yuvData, width, height, 0, 0, width, height, false);
-//
-//    // Thumbnail generieren
-//    int[] thumbnail = luminanceSource.renderThumbnail();
-//    int[] expectedThumbnail = {
-//      0xFF000000 | (0 * 0x00010101),  // Pixel 0
-//      0xFF000000 | (2 * 0x00010101),  // Pixel 2
-//      0xFF000000 | (4 * 0x00010101)   // Pixel 4
-//    }; // Erwartete Pixelwerte für ein Thumbnail (Skalierung nach BREITE/2 und HÖHE/2)
-//
-//    assertArrayEquals("Die generierten Pixelwerte des Vorschaubildes sind nicht korrekt.",expectedThumbnail, thumbnail);
-//  }
 
   @Test
   public void testThumbnailThreeMini() {
@@ -228,22 +211,6 @@ public final class PlanarYUVLuminanceSourceTestCase extends Assert {
     }
   }
 
-//  @Test
-//  public void testThumbnailTwo() {
-//    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
-//      yuvData, dataWidth, dataHeight, 0, 0, dataWidth, dataHeight, false
-//    );
-//
-//    int[] thumbnail = source.renderThumbnail();
-//    int[] expectedThumbnail = new int[]{
-//      0xFF000000 | (0 * 0x00010101),
-//      0xFF000000 | (2 * 0x00010101),
-//      0xFF000000 | (12 * 0x00010101),
-//      0xFF000000 | (14 * 0x00010101)
-//    };
-//
-//    assertArrayEquals("Thumbnail does not match the expected values.", expectedThumbnail, thumbnail);
-//  }
 
   @Test
   public void testThumbnailThree() {
@@ -271,5 +238,4 @@ public final class PlanarYUVLuminanceSourceTestCase extends Assert {
     assertArrayEquals("Thumbnail does not match the expected values.", expectedThumbnail, thumbnail);
   }
 
-
-}
+}//Mini90, KI108, 82

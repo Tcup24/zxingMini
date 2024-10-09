@@ -255,206 +255,206 @@ public final class BitArrayTestCase extends Assert {
 //    }
 //    return true;
 //  }
-//
+
 //  //KItest
-//  @Test
-//  public void testGetSetTwo() {
-//    BitArray bitArray = new BitArray(10);
-//
-//    for (int i = 0; i < bitArray.getSize(); i++) {
-//      assertFalse("Initially all bits should be false", bitArray.get(i));
-//      bitArray.set(i);
-//      assertTrue("Bit should be set to true", bitArray.get(i));
-//      bitArray.flip(i);
-//      assertFalse("Bit should be flipped to false", bitArray.get(i));
-//    }
-//  }
-//
-//  @Test
-//  public void testGetNextSet1Two() {
-//    BitArray bitArray = new BitArray(10);
-//
-//    assertEquals("If no bits are set, getNextSet should return the size", bitArray.getSize(), bitArray.getNextSet(0));
-//  }
-//
-//  @Test
-//  public void testGetNextSet2Two() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.set(5);
-//
-//    assertEquals("getNextSet should return the first set bit", 5, bitArray.getNextSet(0));
-//    assertEquals("getNextSet should return size when no further bits are set", bitArray.getSize(), bitArray.getNextSet(6));
-//  }
-//
-//  @Test
-//  public void testGetNextSet3Two() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.set(2);
-//    bitArray.set(5);
-//    bitArray.set(7);
-//
-//    assertEquals("getNextSet should return 1st set bit", 2, bitArray.getNextSet(0));
-//    assertEquals("getNextSet should return 2nd set bit", 5, bitArray.getNextSet(3));
-//    assertEquals("getNextSet should return 3rd set bit", 7, bitArray.getNextSet(6));
-//    assertEquals("No more bits set beyond 7", bitArray.getSize(), bitArray.getNextSet(8));
-//  }
-//
-//  @Test
-//  public void testGetNextSet4Two() {
-//    BitArray bitArray = new BitArray(100);
-//    bitArray.set(10);
-//    bitArray.set(50);
-//    bitArray.set(75);
-//
-//    assertEquals("Should find first set bit", 10, bitArray.getNextSet(0));
-//    assertEquals("Should find second set bit", 50, bitArray.getNextSet(11));
-//    assertEquals("Should find third set bit", 75, bitArray.getNextSet(51));
-//  }
-//
-////  @Test
-////  public void testGetNextSet5Two() {
-////    BitArray bitArray = new BitArray(100);
-////    bitArray.set(20);
-////    bitArray.set(40);
-////    bitArray.set(60);
-////
-////    for (int i = 0; i < 100; i += 10) {
-////      int nextSet = bitArray.getNextSet(i);
-////      assertTrue("getNextSet should return a valid next set bit", nextSet >= i && nextSet <= 60);
-////    }
-////  }
-//
-//  @Test
-//  public void testGetNextSet5Three() {
-//    BitArray bitArray = new BitArray(100);
-//    bitArray.set(20);
-//    bitArray.set(40);
-//    bitArray.set(60);
-//
-//    for (int i = 0; i < 100; i += 10) {
-//      int expected = i <= 20 ? 20 : i <= 40 ? 40 : i <= 60 ? 60 : bitArray.getSize();
-//      int nextSet = bitArray.getNextSet(i);
-//      assertEquals("Next set bit should match expected value", expected, nextSet);
-//    }
-//  }
-//
-//
-//  @Test
-//  public void testSetBulkTwo() {
-//    BitArray bitArray = new BitArray(32);
-//
-//    bitArray.setBulk(0, 0xFFFFFFFF);
-//    for (int i = 0; i < 32; i++) {
-//      assertTrue("All bits should be set", bitArray.get(i));
-//    }
-//  }
-//
-//  @Test
-//  public void testSetRangeTwo() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.setRange(3, 7);
-//
-//    for (int i = 0; i < 10; i++) {
-//      if (i >= 3 && i < 7) {
-//        assertTrue("Bits in range should be set", bitArray.get(i));
-//      } else {
-//        assertFalse("Bits outside range should not be set", bitArray.get(i));
-//      }
-//    }
-//  }
-//
-//  @Test
-//  public void testClearTwo() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.setRange(0, 10);
-//    bitArray.clear();
-//
-//    for (int i = 0; i < 10; i++) {
-//      assertFalse("All bits should be cleared", bitArray.get(i));
-//    }
-//  }
-//
-//  @Test
-//  public void testFlipTwo() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.flip(5);
-//
-//    assertTrue("Bit should be flipped to true", bitArray.get(5));
-//    bitArray.flip(5);
-//    assertFalse("Bit should be flipped back to false", bitArray.get(5));
-//  }
-//
-//  @Test
-//  public void testGetArrayTwo() {
-//    BitArray bitArray = new BitArray(32);
-//    bitArray.setBulk(0, 0xFFFFFFFF);
-//
-//    int[] bits = bitArray.getBitArray();
-//    assertArrayEquals("Internal int array should represent all set bits", new int[] { 0xFFFFFFFF }, bits);
-//  }
-//
-//  @Test
-//  public void testIsRangeTwo() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.setRange(2, 5);
-//
-//    assertFalse("Range should not be fully set to true", bitArray.isRange(2, 7, true));
-//    assertTrue("Range 2-5 should be fully set to true", bitArray.isRange(2, 5, true));
-//  }
-//
-////  @Test
-////  public void reverseAlgorithmTestTwo() {
-////    BitArray bitArray = new BitArray(64);
-////    bitArray.set(0);
-////    bitArray.set(63);
-////
-////    bitArray.reverse();
-////
-////    assertFalse("First bit should now be false", bitArray.get(0));
-////    assertTrue("Last bit should now be true", bitArray.get(63));
-////  }
-//
-//  @Test
-//  public void reverseAlgorithmTestThree() {
-//    BitArray bitArray = new BitArray(64);
-//    bitArray.set(0);
-//    bitArray.set(63);
-//
-//    bitArray.reverse();
-//
-//    // Nach dem Umdrehen sollte der erste Bit jetzt gesetzt sein
-//    assertTrue("First bit should now be true", bitArray.get(0));
-//    // Und das letzte Bit sollte ebenfalls gesetzt sein
-//    assertTrue("Last bit should now be true", bitArray.get(63));
-//  }
-//
-//  @Test
-//  public void testCloneTwo() {
-//    BitArray bitArray = new BitArray(10);
-//    bitArray.set(5);
-//
-//    BitArray clone = bitArray.clone();
-//    assertEquals("Clone should be equal to original", clone, bitArray);
-//
-//    clone.flip(5);
-//    assertNotEquals("Modifying clone should not affect original", clone, bitArray);
-//  }
-//
-//  @Test
-//  public void testEqualsTwo() {
-//    BitArray bitArray1 = new BitArray(10);
-//    BitArray bitArray2 = new BitArray(10);
-//    System.out.println(bitArray1);
-//
-//    assertEquals("Empty bit arrays should be equal", bitArray1, bitArray2);
-//
-//    bitArray1.set(5);
-//    System.out.println(bitArray1);
-//    assertNotEquals("Different bit values should not be equal", bitArray1, bitArray2);
-//
-//    bitArray2.set(5);
-//    assertEquals("Identical bit arrays should be equal", bitArray1, bitArray2);
-//  }
+  @Test
+  public void testGetSetTwo() {
+    BitArray bitArray = new BitArray(10);
+
+    for (int i = 0; i < bitArray.getSize(); i++) {
+      assertFalse("Initially all bits should be false", bitArray.get(i));
+      bitArray.set(i);
+      assertTrue("Bit should be set to true", bitArray.get(i));
+      bitArray.flip(i);
+      assertFalse("Bit should be flipped to false", bitArray.get(i));
+    }
+  }
+
+  @Test
+  public void testGetNextSet1Two() {
+    BitArray bitArray = new BitArray(10);
+
+    assertEquals("If no bits are set, getNextSet should return the size", bitArray.getSize(), bitArray.getNextSet(0));
+  }
+
+  @Test
+  public void testGetNextSet2Two() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.set(5);
+
+    assertEquals("getNextSet should return the first set bit", 5, bitArray.getNextSet(0));
+    assertEquals("getNextSet should return size when no further bits are set", bitArray.getSize(), bitArray.getNextSet(6));
+  }
+
+  @Test
+  public void testGetNextSet3Two() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.set(2);
+    bitArray.set(5);
+    bitArray.set(7);
+
+    assertEquals("getNextSet should return 1st set bit", 2, bitArray.getNextSet(0));
+    assertEquals("getNextSet should return 2nd set bit", 5, bitArray.getNextSet(3));
+    assertEquals("getNextSet should return 3rd set bit", 7, bitArray.getNextSet(6));
+    assertEquals("No more bits set beyond 7", bitArray.getSize(), bitArray.getNextSet(8));
+  }
+
+  @Test
+  public void testGetNextSet4Two() {
+    BitArray bitArray = new BitArray(100);
+    bitArray.set(10);
+    bitArray.set(50);
+    bitArray.set(75);
+
+    assertEquals("Should find first set bit", 10, bitArray.getNextSet(0));
+    assertEquals("Should find second set bit", 50, bitArray.getNextSet(11));
+    assertEquals("Should find third set bit", 75, bitArray.getNextSet(51));
+  }
+
+  @Test
+  public void testGetNextSet5Two() {
+    BitArray bitArray = new BitArray(100);
+    bitArray.set(20);
+    bitArray.set(40);
+    bitArray.set(60);
+
+    for (int i = 0; i < 100; i += 10) {
+      int nextSet = bitArray.getNextSet(i);
+      assertTrue("getNextSet should return a valid next set bit", nextSet >= i && nextSet <= 60);
+    }
+  }
+
+  @Test
+  public void testGetNextSet5Three() {
+    BitArray bitArray = new BitArray(100);
+    bitArray.set(20);
+    bitArray.set(40);
+    bitArray.set(60);
+
+    for (int i = 0; i < 100; i += 10) {
+      int expected = i <= 20 ? 20 : i <= 40 ? 40 : i <= 60 ? 60 : bitArray.getSize();
+      int nextSet = bitArray.getNextSet(i);
+      assertEquals("Next set bit should match expected value", expected, nextSet);
+    }
+  }
+
+
+  @Test
+  public void testSetBulkTwo() {
+    BitArray bitArray = new BitArray(32);
+
+    bitArray.setBulk(0, 0xFFFFFFFF);
+    for (int i = 0; i < 32; i++) {
+      assertTrue("All bits should be set", bitArray.get(i));
+    }
+  }
+
+  @Test
+  public void testSetRangeTwo() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.setRange(3, 7);
+
+    for (int i = 0; i < 10; i++) {
+      if (i >= 3 && i < 7) {
+        assertTrue("Bits in range should be set", bitArray.get(i));
+      } else {
+        assertFalse("Bits outside range should not be set", bitArray.get(i));
+      }
+    }
+  }
+
+  @Test
+  public void testClearTwo() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.setRange(0, 10);
+    bitArray.clear();
+
+    for (int i = 0; i < 10; i++) {
+      assertFalse("All bits should be cleared", bitArray.get(i));
+    }
+  }
+
+  @Test
+  public void testFlipTwo() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.flip(5);
+
+    assertTrue("Bit should be flipped to true", bitArray.get(5));
+    bitArray.flip(5);
+    assertFalse("Bit should be flipped back to false", bitArray.get(5));
+  }
+
+  @Test
+  public void testGetArrayTwo() {
+    BitArray bitArray = new BitArray(32);
+    bitArray.setBulk(0, 0xFFFFFFFF);
+
+    int[] bits = bitArray.getBitArray();
+    assertArrayEquals("Internal int array should represent all set bits", new int[] { 0xFFFFFFFF }, bits);
+  }
+
+  @Test
+  public void testIsRangeTwo() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.setRange(2, 5);
+
+    assertFalse("Range should not be fully set to true", bitArray.isRange(2, 7, true));
+    assertTrue("Range 2-5 should be fully set to true", bitArray.isRange(2, 5, true));
+  }
+
+  @Test
+  public void reverseAlgorithmTestTwo() {
+    BitArray bitArray = new BitArray(64);
+    bitArray.set(0);
+    bitArray.set(63);
+
+    bitArray.reverse();
+
+    assertFalse("First bit should now be false", bitArray.get(0));
+    assertTrue("Last bit should now be true", bitArray.get(63));
+  }
+
+  @Test
+  public void reverseAlgorithmTestThree() {
+    BitArray bitArray = new BitArray(64);
+    bitArray.set(0);
+    bitArray.set(63);
+
+    bitArray.reverse();
+
+    // Nach dem Umdrehen sollte der erste Bit jetzt gesetzt sein
+    assertTrue("First bit should now be true", bitArray.get(0));
+    // Und das letzte Bit sollte ebenfalls gesetzt sein
+    assertTrue("Last bit should now be true", bitArray.get(63));
+  }
+
+  @Test
+  public void testCloneTwo() {
+    BitArray bitArray = new BitArray(10);
+    bitArray.set(5);
+
+    BitArray clone = bitArray.clone();
+    assertEquals("Clone should be equal to original", clone, bitArray);
+
+    clone.flip(5);
+    assertNotEquals("Modifying clone should not affect original", clone, bitArray);
+  }
+
+  @Test
+  public void testEqualsTwo() {
+    BitArray bitArray1 = new BitArray(10);
+    BitArray bitArray2 = new BitArray(10);
+    System.out.println(bitArray1);
+
+    assertEquals("Empty bit arrays should be equal", bitArray1, bitArray2);
+
+    bitArray1.set(5);
+    System.out.println(bitArray1);
+    assertNotEquals("Different bit values should not be equal", bitArray1, bitArray2);
+
+    bitArray2.set(5);
+    assertEquals("Identical bit arrays should be equal", bitArray1, bitArray2);
+  }
 
 
 
@@ -749,6 +749,4 @@ public final class BitArrayTestCase extends Assert {
         otherArray.set(1); // Setze Bit 1 im anderen Array
         assertTrue(bitArray.equals(otherArray)); // Sie sollten jetzt wieder gleich sein
     }
-
-
-}
+}//Mini 155, KI 195, 257
