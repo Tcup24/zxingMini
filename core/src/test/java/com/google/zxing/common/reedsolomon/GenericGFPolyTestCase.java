@@ -17,6 +17,7 @@
 package com.google.zxing.common.reedsolomon;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**

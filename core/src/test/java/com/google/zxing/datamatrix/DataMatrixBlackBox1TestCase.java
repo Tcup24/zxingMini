@@ -18,7 +18,10 @@ package com.google.zxing.datamatrix;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Reader;
 import com.google.zxing.common.AbstractBlackBoxTestCase;
+
+import java.io.IOException;
 
 /**
  * @author bbrown@google.com (Brian Brown)
