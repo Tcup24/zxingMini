@@ -168,111 +168,111 @@ public final class AddressBookParsedResultTestCase extends Assert {
 
 //KItest
 
-//  @Test
-//  public void testAddressBookDocomoThree() {
-//    Result result = new Result("MECARD:N:John Doe;NOTE:Friend from school;;", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
-//    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
-//    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
-//    assertEquals("Friend from school", addressBookResult.getNote());
-//  }
-//
-//  @Test
-//  public void testAddressBookAUTwo() {
-//    Result result = new Result("AU:NAME:Jane Doe;TEL:+491234567890;", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom check for AU parser output
-//  }
-//
-//  @Test
-//  public void testVCardTwo() {
-//    Result result = new Result("BEGIN:VCARD\nFN:John Doe\nADR:221B Baker Street\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
-//    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
-//    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
-//    assertArrayEquals(new String[]{"221B Baker Street"}, addressBookResult.getAddresses());
-//  }
-//
-//  @Test
-//  public void testVCardFullNTwo() {
-//    Result result = new Result("BEGIN:VCARD\nN:Dr.;John;H.;Doe;Jr.\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
-//    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
-//    // Custom assertion for full name
-//  }
-//
-//  @Test
-//  public void testVCardFullN2Two() {
-//    Result result = new Result("BEGIN:VCARD\nN:Doe;J.\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for parsing abbreviated full name
-//  }
-//
-//  @Test
-//  public void testVCardFullN3Two() {
-//    Result result = new Result("BEGIN:VCARD\nN:;John;;;\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for first name only
-//  }
-//
-//  @Test
-//  public void testVCardCaseInsensitiveTwo() {
-//    Result result = new Result("begin:vcard\nfn:Jane Doe\nend:vcard", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for case insensitivity
-//  }
-//
-//  @Test
-//  public void testEscapedVCardTwo() {
-//    Result result = new Result("BEGIN:VCARD\nADR:123\\; Some Street\\,. Apt \\#101\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for special characters
-//  }
-//
-//  @Test
-//  public void testBizcardTwo() {
-//    Result result = new Result("BIZCARD:NAME:John Doe;ORG:Example Inc;TEL:+491234567890;EMAIL:john.doe@example.com;ADR:123 Main Street;", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for Bizcard data
-//  }
-//
-//  @Test
-//  public void testSeveralAddressesTwo() {
-//    Result result = new Result("BEGIN:VCARD\nADR:Home Address 1\nADR:Office Address\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for multiple addresses
-//  }
-//
-//  @Test
-//  public void testQuotedPrintableTwo() {
-//    Result result = new Result("BEGIN:VCARD\nFN:John =7EDoe\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for quoted-printable decoding
-//  }
-//
-//  @Test
-//  public void testVCardEscapeTwo() {
-//    Result result = new Result("BEGIN:VCARD\nFN:John\\nDoe\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for escape mechanisms
-//  }
-//
-//  @Test
-//  public void testVCardValueURITwo() {
-//    Result result = new Result("BEGIN:VCARD\nTEL;URI:tel:+491234567890\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for URI-formatted phone number
-//  }
-//
-//  @Test
-//  public void testVCardTypesTwo() {
-//    Result result = new Result("BEGIN:VCARD\nTEL;TYPE=HOME:+491234567890\nTEL;TYPE=WORK:+49876543210\nEND:VCARD", null, null, null);
-//    ParsedResult parsedResult = ResultParser.parseResult(result);
-//    // Custom assertion for multiple phone numbers
-//  }
+  @Test
+  public void testAddressBookDocomoThree() {
+    Result result = new Result("MECARD:N:John Doe;NOTE:Friend from school;;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
+    assertEquals("Friend from school", addressBookResult.getNote());
+  }
+
+  @Test
+  public void testAddressBookAUTwo() {
+    Result result = new Result("AU:NAME:Jane Doe;TEL:+491234567890;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom check for AU parser output
+  }
+
+  @Test
+  public void testVCardTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John Doe\nADR:221B Baker Street\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    assertArrayEquals(new String[]{"John Doe"}, addressBookResult.getNames());
+    assertArrayEquals(new String[]{"221B Baker Street"}, addressBookResult.getAddresses());
+  }
+
+  @Test
+  public void testVCardFullNTwo() {
+    Result result = new Result("BEGIN:VCARD\nN:Dr.;John;H.;Doe;Jr.\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    assertEquals(ParsedResultType.ADDRESSBOOK, parsedResult.getType());
+    AddressBookParsedResult addressBookResult = (AddressBookParsedResult) parsedResult;
+    // Custom assertion for full name
+  }
+
+  @Test
+  public void testVCardFullN2Two() {
+    Result result = new Result("BEGIN:VCARD\nN:Doe;J.\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for parsing abbreviated full name
+  }
+
+  @Test
+  public void testVCardFullN3Two() {
+    Result result = new Result("BEGIN:VCARD\nN:;John;;;\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for first name only
+  }
+
+  @Test
+  public void testVCardCaseInsensitiveTwo() {
+    Result result = new Result("begin:vcard\nfn:Jane Doe\nend:vcard", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for case insensitivity
+  }
+
+  @Test
+  public void testEscapedVCardTwo() {
+    Result result = new Result("BEGIN:VCARD\nADR:123\\; Some Street\\,. Apt \\#101\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for special characters
+  }
+
+  @Test
+  public void testBizcardTwo() {
+    Result result = new Result("BIZCARD:NAME:John Doe;ORG:Example Inc;TEL:+491234567890;EMAIL:john.doe@example.com;ADR:123 Main Street;", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for Bizcard data
+  }
+
+  @Test
+  public void testSeveralAddressesTwo() {
+    Result result = new Result("BEGIN:VCARD\nADR:Home Address 1\nADR:Office Address\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for multiple addresses
+  }
+
+  @Test
+  public void testQuotedPrintableTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John =7EDoe\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for quoted-printable decoding
+  }
+
+  @Test
+  public void testVCardEscapeTwo() {
+    Result result = new Result("BEGIN:VCARD\nFN:John\\nDoe\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for escape mechanisms
+  }
+
+  @Test
+  public void testVCardValueURITwo() {
+    Result result = new Result("BEGIN:VCARD\nTEL;URI:tel:+491234567890\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for URI-formatted phone number
+  }
+
+  @Test
+  public void testVCardTypesTwo() {
+    Result result = new Result("BEGIN:VCARD\nTEL;TYPE=HOME:+491234567890\nTEL;TYPE=WORK:+49876543210\nEND:VCARD", null, null, null);
+    ParsedResult parsedResult = ResultParser.parseResult(result);
+    // Custom assertion for multiple phone numbers
+  }
 
   //Mini
   //Fehlerhafte Tests 1-4 +12
@@ -373,174 +373,174 @@ public final class AddressBookParsedResultTestCase extends Assert {
 //-------------------------------------
 
 //   Test 5: Case Insensitivity in vCard
-  @Test
-  public void testCaseInsensitivityInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;\nTEL;TYPE=WORK:1122334455\nEND:VCARD";
-    String title = null;
-    String[] names = {"John Doe"}; // Erwarteter Name (im standardisierten Format)
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = {"1122334455"};
-    String[] phoneTypes = {"WORK"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-
-  // Test 6: Escape Characters in vCard
-  @Test
-  public void testEscapeCharactersInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:O'Reilly;Timothy\nTEL;TYPE=CELL:123\\;4567890\nEND:VCARD";
-    String title = null;
-    String[] names = {"Timothy O'Reilly"};
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = {"123;4567890"};
-    String[] phoneTypes = {"CELL"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-  // Test 7: Different vCard Types
-  @Test
-  public void testDifferentVCardTypesThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nTEL;TYPE=HOME:234567890\nTEL;TYPE=WORK:234567891\nEND:VCARD";
-    String title = null;
-    String[] names = {"John Smith"};
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = {"234567890", "234567891"};
-    String[] phoneTypes = {"HOME", "WORK"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-  // Test 8: Quoted-Printable Encoding
-  @Test
-  public void testQuotedPrintableEncodingInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John\nTEL;TYPE=CELL:1234567890\nEMAIL;TYPE=WORK:john.doe@example.com\nEND:VCARD";
-    String title = null;
-    String[] names = {"John Doe"};
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = {"john.doe@example.com"};
-    String[] phoneNumbers = {"1234567890"};
-    String[] phoneTypes = {"CELL"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-  // Test 9: Phone Number Types
-  @Test
-  public void testPhoneNumberTypesInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Johnson;Mark\nTEL;TYPE=HOME:5551234567\nTEL;TYPE=WORK:5559876543\nEND:VCARD";
-    String title = null;
-    String[] names = {"Mark Johnson"};
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = {"5551234567", "5559876543"};
-    String[] phoneTypes = {"HOME", "WORK"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-   //Test 10: Complex Presence of Types
-  @Test
-  public void testComplexPhoneTypesInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Brown;Charlie\nTEL;TYPE=HOME,VOICE:1112223333\nTEL;TYPE=WORK,VOICE:4445556666\nEND:VCARD";
-    String title = null;
-    String[] names = {"Charlie Brown"};
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = {"1112223333", "4445556666"};
-    String[] phoneTypes = {"HOME,VOICE", "WORK,VOICE"};
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-   //Test 11: URLs in vCard
-  @Test
-  public void testURLsInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Hanks;Tom\nURL:http://www.tomhanks.com\nEND:VCARD";
-    String title = null;
-    String[] names = {"Tom Hanks"}; // Erwarteter Name im Format Vorname Nachname
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = null;
-    String[] phoneTypes = null;
-    String org = null;
-    String[] urls = {"http://www.tomhanks.com"}; // Erwartete URL
-    String birthday = null;
-    String note = null;
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-
-   //Test 13: Notes in vCard
-  @Test
-  public void testNotesInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Orwell;George\nNOTE:Author of \"1984\"\nEND:VCARD";
-    String title = null;
-    String[] names = {"George Orwell"}; // Erwarteter Name
-    String pronunciation = null;
-    String[] addresses = null;
-    String[] emails = null;
-    String[] phoneNumbers = null;
-    String[] phoneTypes = null;
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = "Author of \"1984\""; // Erwartete Notiz
-
-    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
-  }
-
-   //Test 14: Multiple Addresses in vCard
-  @Test
-  public void testMultipleAddressesInVCardThreeMini() {
-    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nADR;TYPE=HOME:123 Main St;Anytown;CA;90210;USA\nADR;TYPE=WORK:456 Elm St;Othertown;CA;90211;USA\nEND:VCARD";
-    String title = null;
-    String[] names = {"John Smith"};
-    String pronunciation = null;
-    String[] addresses = {"123 Main St;Anytown;CA;90210;USA", "456 Elm St;Othertown;CA;90211;USA"};
-    String[] emails = null;
-    String[] phoneNumbers = null;
-    String[] phoneTypes = null;
-    String org = null;
-    String[] urls = null;
-    String birthday = null;
-    String note = null;
-  }
+//  @Test
+//  public void testCaseInsensitivityInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;\nTEL;TYPE=WORK:1122334455\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"John Doe"}; // Erwarteter Name (im standardisierten Format)
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = {"1122334455"};
+//    String[] phoneTypes = {"WORK"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//
+//  // Test 6: Escape Characters in vCard
+//  @Test
+//  public void testEscapeCharactersInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:O'Reilly;Timothy\nTEL;TYPE=CELL:123\\;4567890\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"Timothy O'Reilly"};
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = {"123;4567890"};
+//    String[] phoneTypes = {"CELL"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//  // Test 7: Different vCard Types
+//  @Test
+//  public void testDifferentVCardTypesThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nTEL;TYPE=HOME:234567890\nTEL;TYPE=WORK:234567891\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"John Smith"};
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = {"234567890", "234567891"};
+//    String[] phoneTypes = {"HOME", "WORK"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//  // Test 8: Quoted-Printable Encoding
+//  @Test
+//  public void testQuotedPrintableEncodingInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Doe;John\nTEL;TYPE=CELL:1234567890\nEMAIL;TYPE=WORK:john.doe@example.com\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"John Doe"};
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = {"john.doe@example.com"};
+//    String[] phoneNumbers = {"1234567890"};
+//    String[] phoneTypes = {"CELL"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//  // Test 9: Phone Number Types
+//  @Test
+//  public void testPhoneNumberTypesInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Johnson;Mark\nTEL;TYPE=HOME:5551234567\nTEL;TYPE=WORK:5559876543\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"Mark Johnson"};
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = {"5551234567", "5559876543"};
+//    String[] phoneTypes = {"HOME", "WORK"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//   //Test 10: Complex Presence of Types
+//  @Test
+//  public void testComplexPhoneTypesInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Brown;Charlie\nTEL;TYPE=HOME,VOICE:1112223333\nTEL;TYPE=WORK,VOICE:4445556666\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"Charlie Brown"};
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = {"1112223333", "4445556666"};
+//    String[] phoneTypes = {"HOME,VOICE", "WORK,VOICE"};
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//   //Test 11: URLs in vCard
+//  @Test
+//  public void testURLsInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Hanks;Tom\nURL:http://www.tomhanks.com\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"Tom Hanks"}; // Erwarteter Name im Format Vorname Nachname
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = null;
+//    String[] phoneTypes = null;
+//    String org = null;
+//    String[] urls = {"http://www.tomhanks.com"}; // Erwartete URL
+//    String birthday = null;
+//    String note = null;
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//
+//   //Test 13: Notes in vCard
+//  @Test
+//  public void testNotesInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Orwell;George\nNOTE:Author of \"1984\"\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"George Orwell"}; // Erwarteter Name
+//    String pronunciation = null;
+//    String[] addresses = null;
+//    String[] emails = null;
+//    String[] phoneNumbers = null;
+//    String[] phoneTypes = null;
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = "Author of \"1984\""; // Erwartete Notiz
+//
+//    doTest(contents, title, names, pronunciation, addresses, emails, phoneNumbers, phoneTypes, org, urls, birthday, note);
+//  }
+//
+//   //Test 14: Multiple Addresses in vCard
+//  @Test
+//  public void testMultipleAddressesInVCardThreeMini() {
+//    String contents = "BEGIN:VCARD\nVERSION:3.0\nN:Smith;John\nADR;TYPE=HOME:123 Main St;Anytown;CA;90210;USA\nADR;TYPE=WORK:456 Elm St;Othertown;CA;90211;USA\nEND:VCARD";
+//    String title = null;
+//    String[] names = {"John Smith"};
+//    String pronunciation = null;
+//    String[] addresses = {"123 Main St;Anytown;CA;90210;USA", "456 Elm St;Othertown;CA;90211;USA"};
+//    String[] emails = null;
+//    String[] phoneNumbers = null;
+//    String[] phoneTypes = null;
+//    String org = null;
+//    String[] urls = null;
+//    String birthday = null;
+//    String note = null;
+//  }
 
 }//Mini 317, KI160 , 167

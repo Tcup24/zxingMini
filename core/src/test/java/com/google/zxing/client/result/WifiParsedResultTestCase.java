@@ -92,95 +92,95 @@ public final class WifiParsedResultTestCase extends Assert {
   }
 
   //KItests
-//  @Test
-//  public void testNoPasswordTwo() {
-//    // Test für eine offene WLAN-Konfiguration (kein Passwort)
-//    String contents = "WIFI:S:ExampleSSID;T:nopass;;";
-//    String expectedSsid = "ExampleSSID";
-//    String expectedPassword = null; // Kein Passwort für offene Netzwerke
-//    String expectedType = "nopass"; // Typ für offene Netzwerke
-//
-//    doTest(contents, expectedSsid, expectedPassword, expectedType);
-//  }
-//
-//  @Test
-//  public void testWepTwo() {
-//    // Test für eine WEP-verschlüsselte WLAN-Konfiguration
-//    String contents = "WIFI:S:ExampleWEPSSID;T:WEP;P:12345abcde;;";
-//    String expectedSsid = "ExampleWEPSSID";
-//    String expectedPassword = "12345abcde"; // Beispiel für ein WEP-Passwort
-//    String expectedType = "WEP";
-//
-//    doTest(contents, expectedSsid, expectedPassword, expectedType);
-//  }
-//
-//  @Test
-//  public void testWpaTwo() {
-//    // Test für eine WPA-verschlüsselte WLAN-Konfiguration
-//    String contents = "WIFI:S:ExampleWPASSID;T:WPA;P:securepassword;;";
-//    String expectedSsid = "ExampleWPASSID";
-//    String expectedPassword = "securepassword"; // Beispiel für ein WPA-Passwort
-//    String expectedType = "WPA";
-//
-//    doTest(contents, expectedSsid, expectedPassword, expectedType);
-//  }
+  @Test
+  public void testNoPasswordTwo() {
+    // Test für eine offene WLAN-Konfiguration (kein Passwort)
+    String contents = "WIFI:S:ExampleSSID;T:nopass;;";
+    String expectedSsid = "ExampleSSID";
+    String expectedPassword = null; // Kein Passwort für offene Netzwerke
+    String expectedType = "nopass"; // Typ für offene Netzwerke
 
-//  @Test
-//  public void testEscapeThree() {
-//    // Teste alternative Konfigurationen, um das Verhalten zu isolieren
-//    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with\\;special\\;\\;chars\\;;";
-//    String expectedSsid = "Special;SSID;";
-//    String expectedPassword = "pass:with;special;;chars;";
-//    String expectedType = "WPA";
-//
-//    doTest(contents, expectedSsid, expectedPassword, expectedType);
-//  }
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+  @Test
+  public void testWepTwo() {
+    // Test für eine WEP-verschlüsselte WLAN-Konfiguration
+    String contents = "WIFI:S:ExampleWEPSSID;T:WEP;P:12345abcde;;";
+    String expectedSsid = "ExampleWEPSSID";
+    String expectedPassword = "12345abcde"; // Beispiel für ein WEP-Passwort
+    String expectedType = "WEP";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+  @Test
+  public void testWpaTwo() {
+    // Test für eine WPA-verschlüsselte WLAN-Konfiguration
+    String contents = "WIFI:S:ExampleWPASSID;T:WPA;P:securepassword;;";
+    String expectedSsid = "ExampleWPASSID";
+    String expectedPassword = "securepassword"; // Beispiel für ein WPA-Passwort
+    String expectedType = "WPA";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
+
+  @Test
+  public void testEscapeThree() {
+    // Teste alternative Konfigurationen, um das Verhalten zu isolieren
+    String contents = "WIFI:S:Special\\;SSID\\;;T:WPA;P:pass\\:with\\;special\\;\\;chars\\;;";
+    String expectedSsid = "Special;SSID;";
+    String expectedPassword = "pass:with;special;;chars;";
+    String expectedType = "WPA";
+
+    doTest(contents, expectedSsid, expectedPassword, expectedType);
+  }
 
 
 //Mini
   //versuch 2:
-  @Test
-  public void testOpenWifiNetworkIdentificationThreeMini() {
-    String contents = "WIFI:S:OpenNetwork;"; // Beispiel für ein offenes Netzwerk
-    String ssid = "OpenNetwork";
-    String password = null; // Offenes Netzwerk hat kein Passwort
-    String type = "nopass"; // Angenommener Typ für offenes WLAN
-
-    doTest(contents, ssid, password, type);
-  }
-
-  @Test
-  public void testWEPWifiNetworkRecognitionWithSpecialPasswordThreeMini() {
-    // Beispiel für ein WEP-Netzwerk
-    // Das Passwort enthält ein Semikolon, das escaped wird
-    String contents = "WIFI:S:WEPNetwork;T:WEP;P:pass\\;123;"; // Die Verschlüsselungsart muss hier explizit angegeben werden
-    String ssid = "WEPNetwork";
-    String password = "pass;123";
-    String type = "WEP";
-
-    doTest(contents, ssid, password, type);
-  }
-
-  @Test
-  public void testWPAWifiNetworkRecognitionWithSpecialCharactersThreeMini() {
-    // Beispiel für ein WPA-Netzwerk, mit korrekter Angabe der Verschlüsselung
-    String contents = "WIFI:S:WPAEncryption;T:WPA;P:pass@word\\;*;"; // Korrekte Angabe der Verschlüsselung
-    String ssid = "WPAEncryption";
-    String password = "pass@word;*"; // Erwartetes Passwort
-    String type = "WPA"; // Erwartete Verschlüsselung
-
-    doTest(contents, ssid, password, type);
-  }
-
-  @Test
-  public void testEscapeCharactersInSSIDAndPasswordThreeMini() {
-    // Beispiel mit korrekter Angabe der Verschlüsselung
-    String contents = "WIFI:S:Test\\\\Network;T:WPA;P:example\\\\password;"; // Doppelte Backslashes
-    String ssid = "Test\\Network"; // Erwartete SSID mit einem Backslash
-    String password = "example\\password"; // Erwartetes Passwort mit einem Backslash
-    String type = "WPA"; // Erwartete Verschlüsselung
-
-    doTest(contents, ssid, password, type);
-  }
+//  @Test
+//  public void testOpenWifiNetworkIdentificationThreeMini() {
+//    String contents = "WIFI:S:OpenNetwork;"; // Beispiel für ein offenes Netzwerk
+//    String ssid = "OpenNetwork";
+//    String password = null; // Offenes Netzwerk hat kein Passwort
+//    String type = "nopass"; // Angenommener Typ für offenes WLAN
+//
+//    doTest(contents, ssid, password, type);
+//  }
+//
+//  @Test
+//  public void testWEPWifiNetworkRecognitionWithSpecialPasswordThreeMini() {
+//    // Beispiel für ein WEP-Netzwerk
+//    // Das Passwort enthält ein Semikolon, das escaped wird
+//    String contents = "WIFI:S:WEPNetwork;T:WEP;P:pass\\;123;"; // Die Verschlüsselungsart muss hier explizit angegeben werden
+//    String ssid = "WEPNetwork";
+//    String password = "pass;123";
+//    String type = "WEP";
+//
+//    doTest(contents, ssid, password, type);
+//  }
+//
+//  @Test
+//  public void testWPAWifiNetworkRecognitionWithSpecialCharactersThreeMini() {
+//    // Beispiel für ein WPA-Netzwerk, mit korrekter Angabe der Verschlüsselung
+//    String contents = "WIFI:S:WPAEncryption;T:WPA;P:pass@word\\;*;"; // Korrekte Angabe der Verschlüsselung
+//    String ssid = "WPAEncryption";
+//    String password = "pass@word;*"; // Erwartetes Passwort
+//    String type = "WPA"; // Erwartete Verschlüsselung
+//
+//    doTest(contents, ssid, password, type);
+//  }
+//
+//  @Test
+//  public void testEscapeCharactersInSSIDAndPasswordThreeMini() {
+//    // Beispiel mit korrekter Angabe der Verschlüsselung
+//    String contents = "WIFI:S:Test\\\\Network;T:WPA;P:example\\\\password;"; // Doppelte Backslashes
+//    String ssid = "Test\\Network"; // Erwartete SSID mit einem Backslash
+//    String password = "example\\password"; // Erwartetes Passwort mit einem Backslash
+//    String type = "WPA"; // Erwartete Verschlüsselung
+//
+//    doTest(contents, ssid, password, type);
+//  }
 
 }//Mini 72,KI 72, 92

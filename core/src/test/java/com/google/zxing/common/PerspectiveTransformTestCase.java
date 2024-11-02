@@ -63,27 +63,27 @@ public final class PerspectiveTransformTestCase extends Assert {
   }
 //
   //KItest
-//  @Test
-//  public void testSquareToQuadrilateralTwo() {
-//    // Definieren Sie die Ecken des Quadrats (0,0), (1,0), (1,1), (0,1)
-//    float x0 = 0.0f, y0 = 0.0f, x1 = 1.0f, y1 = 0.0f, x2 = 1.0f, y2 = 1.0f, x3 = 0.0f, y3 = 1.0f;
-//
-//    // Definieren Sie die Ecken des Zielquadrilaterals (z.B. ein Parallelogramm)
-//    float x0p = 0.0f, y0p = 0.0f, x1p = 2.0f, y1p = 1.0f, x2p = 2.0f, y2p = 3.0f, x3p = 0.0f, y3p = 2.0f;
-//
-//    // Erstellen Sie die Transformation
-//    PerspectiveTransform transform = PerspectiveTransform.squareToQuadrilateral(x0p, y0p, x1p, y1p, x2p, y2p, x3p, y3p);
-//
-//    // Testpunkte und ihre erwarteten Positionen
-//    float[] points = { 0.5f, 0.5f, 1.0f, 1.0f };
-//    float[] expectedPoints = { 1.0f, 1.5f, 2.0f, 3.0f };
-//
-//    // Transformation anwenden
-//    transform.transformPoints(points);
-//
-//    // Überprüfen
-//    assertArrayEquals(expectedPoints, points, 0.0001f);
-//  }
+  @Test
+  public void testSquareToQuadrilateralTwo() {
+    // Definieren Sie die Ecken des Quadrats (0,0), (1,0), (1,1), (0,1)
+    float x0 = 0.0f, y0 = 0.0f, x1 = 1.0f, y1 = 0.0f, x2 = 1.0f, y2 = 1.0f, x3 = 0.0f, y3 = 1.0f;
+
+    // Definieren Sie die Ecken des Zielquadrilaterals (z.B. ein Parallelogramm)
+    float x0p = 0.0f, y0p = 0.0f, x1p = 2.0f, y1p = 1.0f, x2p = 2.0f, y2p = 3.0f, x3p = 0.0f, y3p = 2.0f;
+
+    // Erstellen Sie die Transformation
+    PerspectiveTransform transform = PerspectiveTransform.squareToQuadrilateral(x0p, y0p, x1p, y1p, x2p, y2p, x3p, y3p);
+
+    // Testpunkte und ihre erwarteten Positionen
+    float[] points = { 0.5f, 0.5f, 1.0f, 1.0f };
+    float[] expectedPoints = { 1.0f, 1.5f, 2.0f, 3.0f };
+
+    // Transformation anwenden
+    transform.transformPoints(points);
+
+    // Überprüfen
+    assertArrayEquals(expectedPoints, points, 0.0001f);
+  }
 
 
 
@@ -91,39 +91,39 @@ public final class PerspectiveTransformTestCase extends Assert {
    //diese Tests sind mit der anderen KI (4o mini) erstellt wworden. Der Witz: es klappt nun ein Test von mini und der andere nur von 4 omni!
 
 
-  @Test
-  public void testQuadrilateralToQuadrilateralThreeMini() {
-    // Definiere die Punkte des ursprünglichen Vierecks und das Ziel-Viereck
-    float[] sourceQuadrilateral = {0, 0, 2, 1, 1, 3, -1, 2}; // Ausgangs-Viereck
-    float[] targetQuadrilateral = {0, 0, 1, 0, 1, 1, 0, 1}; // Ziel Quadrat
-
-    // Erzeuge die Transformation
-    PerspectiveTransform transform = PerspectiveTransform.quadrilateralToQuadrilateral(
-      sourceQuadrilateral[0], sourceQuadrilateral[1],
-      sourceQuadrilateral[2], sourceQuadrilateral[3],
-      sourceQuadrilateral[4], sourceQuadrilateral[5],
-      sourceQuadrilateral[6], sourceQuadrilateral[7],
-      targetQuadrilateral[0], targetQuadrilateral[1],
-      targetQuadrilateral[2], targetQuadrilateral[3],
-      targetQuadrilateral[4], targetQuadrilateral[5],
-      targetQuadrilateral[6], targetQuadrilateral[7]
-    );
-
-    // Punkte zum Transformieren
-    float[] pointsToTransform = {0, 0, 2, 1}; // Transformation der Ecken des Ausgangs-Vierecks
-
-    // Transformation durchführen
-    transform.transformPoints(pointsToTransform);
-
-    // Erwartete Ergebnisse (die Positionen nach der Transformation)
-    float[] expectedTransformedPoints = {
-      0f, 0f,  // (0,0) nach (0,0)
-      1f, 0f   // (2,1) nach (1,0)
-    };
-
-    // Vergleiche die erwarteten mit den resultierenden Punkten
-    assertArrayEquals(expectedTransformedPoints, pointsToTransform, 1e-6f); // Toleranz für Gleitkommazahlen
-  }
+//  @Test
+//  public void testQuadrilateralToQuadrilateralThreeMini() {
+//    // Definiere die Punkte des ursprünglichen Vierecks und das Ziel-Viereck
+//    float[] sourceQuadrilateral = {0, 0, 2, 1, 1, 3, -1, 2}; // Ausgangs-Viereck
+//    float[] targetQuadrilateral = {0, 0, 1, 0, 1, 1, 0, 1}; // Ziel Quadrat
+//
+//    // Erzeuge die Transformation
+//    PerspectiveTransform transform = PerspectiveTransform.quadrilateralToQuadrilateral(
+//      sourceQuadrilateral[0], sourceQuadrilateral[1],
+//      sourceQuadrilateral[2], sourceQuadrilateral[3],
+//      sourceQuadrilateral[4], sourceQuadrilateral[5],
+//      sourceQuadrilateral[6], sourceQuadrilateral[7],
+//      targetQuadrilateral[0], targetQuadrilateral[1],
+//      targetQuadrilateral[2], targetQuadrilateral[3],
+//      targetQuadrilateral[4], targetQuadrilateral[5],
+//      targetQuadrilateral[6], targetQuadrilateral[7]
+//    );
+//
+//    // Punkte zum Transformieren
+//    float[] pointsToTransform = {0, 0, 2, 1}; // Transformation der Ecken des Ausgangs-Vierecks
+//
+//    // Transformation durchführen
+//    transform.transformPoints(pointsToTransform);
+//
+//    // Erwartete Ergebnisse (die Positionen nach der Transformation)
+//    float[] expectedTransformedPoints = {
+//      0f, 0f,  // (0,0) nach (0,0)
+//      1f, 0f   // (2,1) nach (1,0)
+//    };
+//
+//    // Vergleiche die erwarteten mit den resultierenden Punkten
+//    assertArrayEquals(expectedTransformedPoints, pointsToTransform, 1e-6f); // Toleranz für Gleitkommazahlen
+//  }
 
 }
 //Mini61; KI72; 63

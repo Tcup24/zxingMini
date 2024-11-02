@@ -59,59 +59,59 @@ public final class GeoParsedResultTestCase extends Assert {
   }
 
   //KItest
-//  @Test
-//  public void testGeoTwo() {
-//    // Beispiel mit einfachen Geokoordinaten ohne zusätzliche Parameter oder URI
-//    doTest("geo:37.7749,-122.4194",
-//      37.7749,
-//      -122.4194,
-//      0.0,
-//      null,
-//      null);
-//
-//    // Beispiel mit Geokoordinaten und Höhe
-//    doTest("geo:47.6205,-122.3493,15.0",
-//      47.6205,
-//      -122.3493,
-//      15.0,
-//      null,
-//      null);
-//
-//    // Beispiel mit Geokoordinaten und Anfrageparameter
-//    doTest("geo:40.6892,-74.0445?q=statue+of+liberty",
-//      40.6892,
-//      -74.0445,
-//      0.0,
-//      "q=statue+of+liberty",
-//      null);
-//
-//    // Beispiel mit einer angegebenen URI
-//    doTest("geo:51.5074,-0.1278",
-//      51.5074,
-//      -0.1278,
-//      0.0,
-//      null,
-//      "geo:51.5074,-0.1278");
-//  }
+  @Test
+  public void testGeoTwo() {
+    // Beispiel mit einfachen Geokoordinaten ohne zusätzliche Parameter oder URI
+    doTest("geo:37.7749,-122.4194",
+      37.7749,
+      -122.4194,
+      0.0,
+      null,
+      null);
+
+    // Beispiel mit Geokoordinaten und Höhe
+    doTest("geo:47.6205,-122.3493,15.0",
+      47.6205,
+      -122.3493,
+      15.0,
+      null,
+      null);
+
+    // Beispiel mit Geokoordinaten und Anfrageparameter
+    doTest("geo:40.6892,-74.0445?q=statue+of+liberty",
+      40.6892,
+      -74.0445,
+      0.0,
+      "q=statue+of+liberty",
+      null);
+
+    // Beispiel mit einer angegebenen URI
+    doTest("geo:51.5074,-0.1278",
+      51.5074,
+      -0.1278,
+      0.0,
+      null,
+      "geo:51.5074,-0.1278");
+  }
 
 
   //Mini
 
-  @Test
-  public void testGeoCodeThreeMini() {
-    // Beispiel Geo-Code mit Latitude, Longitude, Altitude und Query
-    String geoCode = "geo:37.7749,-122.4194,10.0?q=somequery"; // 10.0 statt 10
-
-    // Erwartete Werte
-    double expectedLatitude = 37.7749;
-    double expectedLongitude = -122.4194;
-    double expectedAltitude = 10.0;
-    String expectedQuery = "q=somequery";
-    String expectedURI = geoCode.toLowerCase(Locale.ENGLISH); // Das geo ist in Kleinbuchstaben
-
-    // Aufruf der Testmethode mit den Inhalten
-    doTest(geoCode, expectedLatitude, expectedLongitude, expectedAltitude, expectedQuery, null);
-  }
+//  @Test
+//  public void testGeoCodeThreeMini() {
+//    // Beispiel Geo-Code mit Latitude, Longitude, Altitude und Query
+//    String geoCode = "geo:37.7749,-122.4194,10.0?q=somequery"; // 10.0 statt 10
+//
+//    // Erwartete Werte
+//    double expectedLatitude = 37.7749;
+//    double expectedLongitude = -122.4194;
+//    double expectedAltitude = 10.0;
+//    String expectedQuery = "q=somequery";
+//    String expectedURI = geoCode.toLowerCase(Locale.ENGLISH); // Das geo ist in Kleinbuchstaben
+//
+//    // Aufruf der Testmethode mit den Inhalten
+//    doTest(geoCode, expectedLatitude, expectedLongitude, expectedAltitude, expectedQuery, null);
+//  }
 
 }
 //Mini65; KI83, 59

@@ -65,100 +65,100 @@ public final class RGBLuminanceSourceTestCase extends Assert {
 ////  KItest
 ////
 //  //zweiter versuch
-//  @Test
-//  public void testCropThree() {
-//    int width = 5;
-//    int height = 5;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    // Zuschneiden der Bildquelle
-//    LuminanceSource cropped = source.crop(1, 1, 3, 3);
-//
-//    assertTrue("Zuschneiden sollte unterstützt werden.", cropped.isCropSupported());
-//    assertEquals("Die Breite nach dem Zuschneiden ist nicht korrekt.",3, cropped.getWidth());
-//    assertEquals("Die Höhe nach dem Zuschneiden ist nicht korrekt.", 3, cropped.getHeight());
-//
-//    // Überprüfen des Inhalts einer bestimmten Zeile
-//    byte[] row = cropped.getRow(1, null);
-//    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
-//    assertArrayEquals("Der Inhalt der zugeschnittenen Zeile ist nicht korrekt.",expectedRow, row);
-//  }
-//
-//  @Test
-//  public void testMatrixThree() {
-//    int width = 3;
-//    int height = 3;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    byte[] matrix = source.getMatrix();
-//    assertEquals("Die Matrixlänge ist nicht korrekt.",width * height, matrix.length);
-//
-//    // Zuschneiden und Luminanz überprüfen
-//    LuminanceSource cropped = source.crop(0, 1, 2, 2);
-//    byte[] expectedMatrix = {(byte)0xFF, 0x00, 0x00, (byte)0xFF};
-//
-//    assertArrayEquals("Die Luminanzmatrix des zugeschnittenen Abschnitts ist nicht korrekt.",expectedMatrix, cropped.getMatrix());
-//  }
-//
-//  @Test
-//  public void testGetRowThree() {
-//    int width = 3;
-//    int height = 3;
-//    int[] pixels = {
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//      0xFF000000, 0xFFFFFFFF, 0xFF000000,
-//      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    byte[] row = source.getRow(2, null);
-//    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
-//    assertArrayEquals("Die Luminanzwerte der zurückgegebenen Zeile sind nicht korrekt.",expectedRow, row);
-//  }
-//
-//
-//  @Test
-//  public void testToStringThree() {
-//    int width = 2;
-//    int height = 2;
-//    int[] pixels = {
-//      0xFF000000, 0xFFFFFFFF,
-//      0xFFFFFFFF, 0xFF000000,
-//    };
-//
-//    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
-//
-//    String expectedString =
-//      "1 0 " + System.lineSeparator() +
-//        "0 1 " + System.lineSeparator();
-//
-//    StringBuilder sb = new StringBuilder();
-//    for (int y = 0; y < height; y++) {
-//      for (int x = 0; x < width; x++) {
-//        byte luminance = source.getRow(y, null)[x];
-//        // Annahme: Weiß wird als 1 und Schwarz als 0 dargestellt
-//        sb.append(luminance == (byte) 0xFF ? "0" : "1").append(" ");
-//      }
-//      sb.append(System.lineSeparator());
-//    }
-//
-//    assertEquals("Die Textdarstellung der Bildquelle ist nicht korrekt.",expectedString, sb.toString());
-//  }
+  @Test
+  public void testCropThree() {
+    int width = 5;
+    int height = 5;
+    int[] pixels = {
+      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
+      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
+      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
+      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
+      0xFF000000, 0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF, 0xFF000000,
+    };
+
+    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+
+    // Zuschneiden der Bildquelle
+    LuminanceSource cropped = source.crop(1, 1, 3, 3);
+
+    assertTrue("Zuschneiden sollte unterstützt werden.", cropped.isCropSupported());
+    assertEquals("Die Breite nach dem Zuschneiden ist nicht korrekt.",3, cropped.getWidth());
+    assertEquals("Die Höhe nach dem Zuschneiden ist nicht korrekt.", 3, cropped.getHeight());
+
+    // Überprüfen des Inhalts einer bestimmten Zeile
+    byte[] row = cropped.getRow(1, null);
+    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
+    assertArrayEquals("Der Inhalt der zugeschnittenen Zeile ist nicht korrekt.",expectedRow, row);
+  }
+
+  @Test
+  public void testMatrixThree() {
+    int width = 3;
+    int height = 3;
+    int[] pixels = {
+      0xFF000000, 0xFFFFFFFF, 0xFF000000,
+      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
+      0xFF000000, 0xFFFFFFFF, 0xFF000000,
+    };
+
+    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+
+    byte[] matrix = source.getMatrix();
+    assertEquals("Die Matrixlänge ist nicht korrekt.",width * height, matrix.length);
+
+    // Zuschneiden und Luminanz überprüfen
+    LuminanceSource cropped = source.crop(0, 1, 2, 2);
+    byte[] expectedMatrix = {(byte)0xFF, 0x00, 0x00, (byte)0xFF};
+
+    assertArrayEquals("Die Luminanzmatrix des zugeschnittenen Abschnitts ist nicht korrekt.",expectedMatrix, cropped.getMatrix());
+  }
+
+  @Test
+  public void testGetRowThree() {
+    int width = 3;
+    int height = 3;
+    int[] pixels = {
+      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
+      0xFF000000, 0xFFFFFFFF, 0xFF000000,
+      0xFFFFFFFF, 0xFF000000, 0xFFFFFFFF,
+    };
+
+    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+
+    byte[] row = source.getRow(2, null);
+    byte[] expectedRow = {(byte)0xFF, 0x00, (byte)0xFF};
+    assertArrayEquals("Die Luminanzwerte der zurückgegebenen Zeile sind nicht korrekt.",expectedRow, row);
+  }
+
+
+  @Test
+  public void testToStringThree() {
+    int width = 2;
+    int height = 2;
+    int[] pixels = {
+      0xFF000000, 0xFFFFFFFF,
+      0xFFFFFFFF, 0xFF000000,
+    };
+
+    RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+
+    String expectedString =
+      "1 0 " + System.lineSeparator() +
+        "0 1 " + System.lineSeparator();
+
+    StringBuilder sb = new StringBuilder();
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        byte luminance = source.getRow(y, null)[x];
+        // Annahme: Weiß wird als 1 und Schwarz als 0 dargestellt
+        sb.append(luminance == (byte) 0xFF ? "0" : "1").append(" ");
+      }
+      sb.append(System.lineSeparator());
+    }
+
+    assertEquals("Die Textdarstellung der Bildquelle ist nicht korrekt.",expectedString, sb.toString());
+  }
 //
 //  //KI Mini
 //
