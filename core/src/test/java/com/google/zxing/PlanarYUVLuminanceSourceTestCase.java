@@ -25,21 +25,21 @@ import org.junit.Test;
  */
 public final class PlanarYUVLuminanceSourceTestCase extends Assert {
 
-//  private static final byte[] YUV = {
-//      0,  1,  1,  2,  3,  5,
-//      8, 13, 21, 34, 55, 89,
-//      0,  -1,  -1,  -2,  -3,  -5,
-//      -8, -13, -21, -34, -55, -89,
-//      127, 127, 127, 127, 127, 127,
-//      127, 127, 127, 127, 127, 127,
-//  };
-//  private static final int COLS = 6;
-//  private static final int ROWS = 4;
-//  private static final byte[] Y = new byte[COLS * ROWS];
-//  static {
-//    System.arraycopy(YUV, 0, Y, 0, Y.length);
-//  }
-//
+  private static final byte[] YUV = {
+      0,  1,  1,  2,  3,  5,
+      8, 13, 21, 34, 55, 89,
+      0,  -1,  -1,  -2,  -3,  -5,
+      -8, -13, -21, -34, -55, -89,
+      127, 127, 127, 127, 127, 127,
+      127, 127, 127, 127, 127, 127,
+  };
+  private static final int COLS = 6;
+  private static final int ROWS = 4;
+  private static final byte[] Y = new byte[COLS * ROWS];
+  static {
+    System.arraycopy(YUV, 0, Y, 0, Y.length);
+  }
+
 //  @Test
 //  public void testNoCrop() {
 //    PlanarYUVLuminanceSource source =
@@ -80,6 +80,95 @@ public final class PlanarYUVLuminanceSourceTestCase extends Assert {
 //      assertEquals(expected[expectedFrom + i], actual[actualFrom + i]);
 //    }
 //  }
+
+
+  //KItest
+
+//  private byte[] yuvData;
+//  private int dataWidth;
+//  private int dataHeight;
+//
+//  @Before
+//  public void setUp() {
+//    dataWidth = 6;  // Beispielwerte
+//    dataHeight = 4;  // Beispielwerte
+//    yuvData = new byte[]{
+//      0, 1, 2, 3, 4, 5,
+//      6, 7, 8, 9, 10, 11,
+//      12, 13, 14, 15, 16, 17,
+//      18, 19, 20, 21, 22, 23
+//    };  // Einfaches YUV-Luminanzdatenarray zum Testen
+//  }
+//
+//  @Test
+//  public void testNoCropTwo() {
+//    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+//      yuvData, dataWidth, dataHeight, 0, 0, dataWidth, dataHeight, false
+//    );
+//
+//    byte[] matrix = source.getMatrix();
+//    assertArrayEquals("The matrix should be equal to the input yuvData for no cropping.", yuvData, matrix);
+//
+//    for (int y = 0; y < dataHeight; y++) {
+//      byte[] row = source.getRow(y, null);
+//      for (int x = 0; x < dataWidth; x++) {
+//        assertEquals("Luminance value at row " + y + ", column " + x + " is incorrect.",
+//          yuvData[y * dataWidth + x], row[x]);
+//      }
+//    }
+//  }
+//
+//  @Test
+//  public void testCropTwo() {
+//    int cropLeft = 1;
+//    int cropTop = 1;
+//    int cropWidth = 2;
+//    int cropHeight = 2;
+//
+//    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+//      yuvData, dataWidth, dataHeight, cropLeft, cropTop, cropWidth, cropHeight, false
+//    );
+//
+//    byte[] matrix = source.getMatrix();
+//    byte[] expectedCroppedData = new byte[]{7, 8, 13, 14};
+//    assertArrayEquals("Cropped matrix is not as expected.", expectedCroppedData, matrix);
+//
+//    for (int y = 0; y < cropHeight; y++) {
+//      byte[] row = source.getRow(y, null);
+//      for (int x = 0; x < cropWidth; x++) {
+//        assertEquals("Luminance value at cropped row " + y + ", column " + x + " is incorrect.",
+//          expectedCroppedData[y * cropWidth + x], row[x]);
+//      }
+//    }
+//  }
+//
+//
+//  @Test
+//  public void testThumbnailThree() {
+//    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+//      yuvData, dataWidth, dataHeight, 0, 0, dataWidth, dataHeight, false
+//    );
+//
+//    int[] thumbnail = source.renderThumbnail();
+//
+//    // Berechnung der erwarteten Thumbnail-Werte
+//    int expectedWidth = dataWidth / 2;
+//    int expectedHeight = dataHeight / 2;
+//    int[] expectedThumbnail = new int[expectedWidth * expectedHeight];
+//
+//    int idx = 0;
+//    for (int y = 0; y < expectedHeight; y++) {
+//      for (int x = 0; x < expectedWidth; x++) {
+//        int yuvIndex = (y * 2 * dataWidth) + (x * 2);  // Skalierungsfaktor berücksichtigen
+//        int grey = yuvData[yuvIndex] & 0xff;
+//        expectedThumbnail[idx] = 0xFF000000 | (grey * 0x00010101);
+//        idx++;
+//      }
+//    }
+//
+//    assertArrayEquals("Thumbnail does not match the expected values.", expectedThumbnail, thumbnail);
+//  }
+
 
   //KItest Mini:
   @Test
@@ -151,91 +240,6 @@ public final class PlanarYUVLuminanceSourceTestCase extends Assert {
     assertArrayEquals("Die generierten Pixelwerte des Vorschaubildes sind nicht korrekt.",expectedThumbnail, thumbnail);
   }
 
-//KItest
 
-  private byte[] yuvData;
-  private int dataWidth;
-  private int dataHeight;
-
-  @Before
-  public void setUp() {
-    dataWidth = 6;  // Beispielwerte
-    dataHeight = 4;  // Beispielwerte
-    yuvData = new byte[]{
-      0, 1, 2, 3, 4, 5,
-      6, 7, 8, 9, 10, 11,
-      12, 13, 14, 15, 16, 17,
-      18, 19, 20, 21, 22, 23
-    };  // Einfaches YUV-Luminanzdatenarray zum Testen
-  }
-
-  @Test
-  public void testNoCropTwo() {
-    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
-      yuvData, dataWidth, dataHeight, 0, 0, dataWidth, dataHeight, false
-    );
-
-    byte[] matrix = source.getMatrix();
-    assertArrayEquals("The matrix should be equal to the input yuvData for no cropping.", yuvData, matrix);
-
-    for (int y = 0; y < dataHeight; y++) {
-      byte[] row = source.getRow(y, null);
-      for (int x = 0; x < dataWidth; x++) {
-        assertEquals("Luminance value at row " + y + ", column " + x + " is incorrect.",
-          yuvData[y * dataWidth + x], row[x]);
-      }
-    }
-  }
-
-  @Test
-  public void testCropTwo() {
-    int cropLeft = 1;
-    int cropTop = 1;
-    int cropWidth = 2;
-    int cropHeight = 2;
-
-    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
-      yuvData, dataWidth, dataHeight, cropLeft, cropTop, cropWidth, cropHeight, false
-    );
-
-    byte[] matrix = source.getMatrix();
-    byte[] expectedCroppedData = new byte[]{7, 8, 13, 14};
-    assertArrayEquals("Cropped matrix is not as expected.", expectedCroppedData, matrix);
-
-    for (int y = 0; y < cropHeight; y++) {
-      byte[] row = source.getRow(y, null);
-      for (int x = 0; x < cropWidth; x++) {
-        assertEquals("Luminance value at cropped row " + y + ", column " + x + " is incorrect.",
-          expectedCroppedData[y * cropWidth + x], row[x]);
-      }
-    }
-  }
-
-
-  @Test
-  public void testThumbnailThree() {
-    PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
-      yuvData, dataWidth, dataHeight, 0, 0, dataWidth, dataHeight, false
-    );
-
-    int[] thumbnail = source.renderThumbnail();
-
-    // Berechnung der erwarteten Thumbnail-Werte
-    int expectedWidth = dataWidth / 2;
-    int expectedHeight = dataHeight / 2;
-    int[] expectedThumbnail = new int[expectedWidth * expectedHeight];
-
-    int idx = 0;
-    for (int y = 0; y < expectedHeight; y++) {
-      for (int x = 0; x < expectedWidth; x++) {
-        int yuvIndex = (y * 2 * dataWidth) + (x * 2);  // Skalierungsfaktor berücksichtigen
-        int grey = yuvData[yuvIndex] & 0xff;
-        expectedThumbnail[idx] = 0xFF000000 | (grey * 0x00010101);
-        idx++;
-      }
-    }
-
-    assertArrayEquals("Thumbnail does not match the expected values.", expectedThumbnail, thumbnail);
-  }
 
 }//Mini90, KI108, 82

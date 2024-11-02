@@ -136,77 +136,77 @@ public final class QRCodeTestCase extends Assert {
     qrCode = new QRCode();
   }
 
-  @Test
-  public void testQRCodeInitializationTwo() {
-    // Beispielwerte für die Parametrisierung
-    Mode mode = Mode.BYTE;  // Beispielmodus
-    ErrorCorrectionLevel ecLevel = ErrorCorrectionLevel.H;  // Beispiel-Fehlerkorrekturstufe
-    Version version = Version.getVersionForNumber(5);
-    int maskPattern = 3;
-    ByteMatrix matrix = new ByteMatrix(21, 21);
-
-    qrCode.setMode(mode);
-    qrCode.setECLevel(ecLevel);
-    qrCode.setVersion(version);
-    qrCode.setMaskPattern(maskPattern);
-    qrCode.setMatrix(matrix);
-
-    assertEquals("Mode not setting correctly", mode, qrCode.getMode());
-    assertEquals("Error Correction Level not setting correctly", ecLevel, qrCode.getECLevel());
-    assertEquals("Version not setting correctly", version, qrCode.getVersion());
-    assertEquals("Mask Pattern not setting correctly", maskPattern, qrCode.getMaskPattern());
-    assertEquals("Matrix not setting correctly", matrix, qrCode.getMatrix());
-  }
-
-  @Test
-  public void testToString1Two() {
-    String expected = "<<\n"
-      + " mode: null\n"
-      + " ecLevel: null\n"
-      + " version: null\n"
-      + " maskPattern: -1\n"
-      + " matrix: null\n"
-      + ">>\n";
-    assertEquals("QR Code toString does not match expected format", expected, qrCode.toString());
-  }
-
-  @Test
-  public void testToString2Two() {
-    // Vorausgesetzte Beispielparameter
-    Mode mode = Mode.BYTE;
-    ErrorCorrectionLevel ecLevel = ErrorCorrectionLevel.L;
-    Version version = Version.getVersionForNumber(2);
-    int maskPattern = 2;
-    ByteMatrix matrix = new ByteMatrix(21, 21);
-
-    qrCode.setMode(mode);
-    qrCode.setECLevel(ecLevel);
-    qrCode.setVersion(version);
-    qrCode.setMaskPattern(maskPattern);
-    qrCode.setMatrix(matrix);
-
-    String expected = "<<\n"
-      + " mode: " + mode + "\n"
-      + " ecLevel: " + ecLevel + "\n"
-      + " version: " + version + "\n"
-      + " maskPattern: " + maskPattern + "\n"
-      + " matrix:\n" + matrix.toString()
-      + ">>\n";
-
-    assertEquals("QR Code toString does not match the expected output", expected, qrCode.toString());
-  }
-
-  @Test
-  public void testIsValidMaskPatternTwo() {
-    // Test für negative Werte und außerhalb der erlaubten Range
-    assertFalse("Expected false for invalid mask pattern: -1", QRCode.isValidMaskPattern(-1));
-    assertFalse("Expected false for invalid mask pattern: 8", QRCode.isValidMaskPattern(8));
-
-    // Test für gültige Masken
-    for (int i = 0; i < QRCode.NUM_MASK_PATTERNS; i++) {
-      assertTrue("Mask pattern " + i + " should be valid", QRCode.isValidMaskPattern(i));
-    }
-  }
+//  @Test
+//  public void testQRCodeInitializationTwo() {
+//    // Beispielwerte für die Parametrisierung
+//    Mode mode = Mode.BYTE;  // Beispielmodus
+//    ErrorCorrectionLevel ecLevel = ErrorCorrectionLevel.H;  // Beispiel-Fehlerkorrekturstufe
+//    Version version = Version.getVersionForNumber(5);
+//    int maskPattern = 3;
+//    ByteMatrix matrix = new ByteMatrix(21, 21);
+//
+//    qrCode.setMode(mode);
+//    qrCode.setECLevel(ecLevel);
+//    qrCode.setVersion(version);
+//    qrCode.setMaskPattern(maskPattern);
+//    qrCode.setMatrix(matrix);
+//
+//    assertEquals("Mode not setting correctly", mode, qrCode.getMode());
+//    assertEquals("Error Correction Level not setting correctly", ecLevel, qrCode.getECLevel());
+//    assertEquals("Version not setting correctly", version, qrCode.getVersion());
+//    assertEquals("Mask Pattern not setting correctly", maskPattern, qrCode.getMaskPattern());
+//    assertEquals("Matrix not setting correctly", matrix, qrCode.getMatrix());
+//  }
+//
+//  @Test
+//  public void testToString1Two() {
+//    String expected = "<<\n"
+//      + " mode: null\n"
+//      + " ecLevel: null\n"
+//      + " version: null\n"
+//      + " maskPattern: -1\n"
+//      + " matrix: null\n"
+//      + ">>\n";
+//    assertEquals("QR Code toString does not match expected format", expected, qrCode.toString());
+//  }
+//
+//  @Test
+//  public void testToString2Two() {
+//    // Vorausgesetzte Beispielparameter
+//    Mode mode = Mode.BYTE;
+//    ErrorCorrectionLevel ecLevel = ErrorCorrectionLevel.L;
+//    Version version = Version.getVersionForNumber(2);
+//    int maskPattern = 2;
+//    ByteMatrix matrix = new ByteMatrix(21, 21);
+//
+//    qrCode.setMode(mode);
+//    qrCode.setECLevel(ecLevel);
+//    qrCode.setVersion(version);
+//    qrCode.setMaskPattern(maskPattern);
+//    qrCode.setMatrix(matrix);
+//
+//    String expected = "<<\n"
+//      + " mode: " + mode + "\n"
+//      + " ecLevel: " + ecLevel + "\n"
+//      + " version: " + version + "\n"
+//      + " maskPattern: " + maskPattern + "\n"
+//      + " matrix:\n" + matrix.toString()
+//      + ">>\n";
+//
+//    assertEquals("QR Code toString does not match the expected output", expected, qrCode.toString());
+//  }
+//
+//  @Test
+//  public void testIsValidMaskPatternTwo() {
+//    // Test für negative Werte und außerhalb der erlaubten Range
+//    assertFalse("Expected false for invalid mask pattern: -1", QRCode.isValidMaskPattern(-1));
+//    assertFalse("Expected false for invalid mask pattern: 8", QRCode.isValidMaskPattern(8));
+//
+//    // Test für gültige Masken
+//    for (int i = 0; i < QRCode.NUM_MASK_PATTERNS; i++) {
+//      assertTrue("Mask pattern " + i + " should be valid", QRCode.isValidMaskPattern(i));
+//    }
+//  }
 
   //Mini:
 

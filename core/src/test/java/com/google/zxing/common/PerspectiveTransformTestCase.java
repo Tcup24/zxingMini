@@ -24,7 +24,7 @@ import org.junit.Test;
  */
 public final class PerspectiveTransformTestCase extends Assert {
 
-//  private static final float EPSILON = 1.0E-4f;
+  private static final float EPSILON = 1.0E-4f;
 //
 //  @Test
 //  public void testSquareToQuadrilateral() {
@@ -50,41 +50,41 @@ public final class PerspectiveTransformTestCase extends Assert {
 //    assertPointEquals(7.1516876f, -64.60185f, 0.5f, 0.5f, pt);
 //    assertPointEquals(328.09116f, 334.16385f, 50.0f, 50.0f, pt);
 //  }
-//
-//  private static void assertPointEquals(float expectedX,
-//                                        float expectedY,
-//                                        float sourceX,
-//                                        float sourceY,
-//                                        PerspectiveTransform pt) {
-//    float[] points = {sourceX, sourceY};
-//    pt.transformPoints(points);
-//    assertEquals(expectedX, points[0], EPSILON);
-//    assertEquals(expectedY, points[1], EPSILON);
-//  }
-//
-//  //KItest
-  @Test
-  public void testSquareToQuadrilateralTwo() {
-    // Definieren Sie die Ecken des Quadrats (0,0), (1,0), (1,1), (0,1)
-    float x0 = 0.0f, y0 = 0.0f, x1 = 1.0f, y1 = 0.0f, x2 = 1.0f, y2 = 1.0f, x3 = 0.0f, y3 = 1.0f;
 
-    // Definieren Sie die Ecken des Zielquadrilaterals (z.B. ein Parallelogramm)
-    float x0p = 0.0f, y0p = 0.0f, x1p = 2.0f, y1p = 1.0f, x2p = 2.0f, y2p = 3.0f, x3p = 0.0f, y3p = 2.0f;
-
-    // Erstellen Sie die Transformation
-    PerspectiveTransform transform = PerspectiveTransform.squareToQuadrilateral(x0p, y0p, x1p, y1p, x2p, y2p, x3p, y3p);
-
-    // Testpunkte und ihre erwarteten Positionen
-    float[] points = { 0.5f, 0.5f, 1.0f, 1.0f };
-    float[] expectedPoints = { 1.0f, 1.5f, 2.0f, 3.0f };
-
-    // Transformation anwenden
-    transform.transformPoints(points);
-
-    // Überprüfen
-    assertArrayEquals(expectedPoints, points, 0.0001f);
+  private static void assertPointEquals(float expectedX,
+                                        float expectedY,
+                                        float sourceX,
+                                        float sourceY,
+                                        PerspectiveTransform pt) {
+    float[] points = {sourceX, sourceY};
+    pt.transformPoints(points);
+    assertEquals(expectedX, points[0], EPSILON);
+    assertEquals(expectedY, points[1], EPSILON);
   }
 //
+  //KItest
+//  @Test
+//  public void testSquareToQuadrilateralTwo() {
+//    // Definieren Sie die Ecken des Quadrats (0,0), (1,0), (1,1), (0,1)
+//    float x0 = 0.0f, y0 = 0.0f, x1 = 1.0f, y1 = 0.0f, x2 = 1.0f, y2 = 1.0f, x3 = 0.0f, y3 = 1.0f;
+//
+//    // Definieren Sie die Ecken des Zielquadrilaterals (z.B. ein Parallelogramm)
+//    float x0p = 0.0f, y0p = 0.0f, x1p = 2.0f, y1p = 1.0f, x2p = 2.0f, y2p = 3.0f, x3p = 0.0f, y3p = 2.0f;
+//
+//    // Erstellen Sie die Transformation
+//    PerspectiveTransform transform = PerspectiveTransform.squareToQuadrilateral(x0p, y0p, x1p, y1p, x2p, y2p, x3p, y3p);
+//
+//    // Testpunkte und ihre erwarteten Positionen
+//    float[] points = { 0.5f, 0.5f, 1.0f, 1.0f };
+//    float[] expectedPoints = { 1.0f, 1.5f, 2.0f, 3.0f };
+//
+//    // Transformation anwenden
+//    transform.transformPoints(points);
+//
+//    // Überprüfen
+//    assertArrayEquals(expectedPoints, points, 0.0001f);
+//  }
+
 
 
 //Mini

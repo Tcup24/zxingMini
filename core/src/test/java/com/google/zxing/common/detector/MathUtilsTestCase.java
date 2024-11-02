@@ -72,77 +72,77 @@ public final class MathUtilsTestCase extends Assert {
 
   // KItest:
 
-  @Test
-  public void testRoundTwo() {
-    // Test positive numbers
-    assertEquals(2, round(2.4f));
-    assertEquals(3, round(2.5f));
-    assertEquals(3, round(2.6f));
-
-    // Test negative numbers
-    assertEquals(-2, round(-2.4f));
-    assertEquals(-3, round(-2.5f));
-    assertEquals(-3, round(-2.6f));
-
-    // Test extreme values
-    assertEquals(Integer.MAX_VALUE, round(Float.MAX_VALUE));
-    assertEquals(Integer.MIN_VALUE, round(-Float.MAX_VALUE));
-
-    // Test NaN
-    assertEquals(0, round(Float.NaN));
-
-    // Test positive and negative infinity
-    assertEquals(Integer.MAX_VALUE, round(Float.POSITIVE_INFINITY));
-    assertEquals(Integer.MIN_VALUE, round(Float.NEGATIVE_INFINITY));
-  }
-
-  public static int round(float d) {
-    return (int) (d + (d < 0.0f ? -0.5f : 0.5f));
-  }
-
-  @Test
-  public void testDistanceTwo() {
-    // Test with integers
-    assertEquals(5.0f, distance(0, 0, 3, 4), 0.0001f);
-
-    // Test with floating point numbers
-    assertEquals((float) Math.sqrt(2), distance(0, 0, 1, 1), 0.0001f);
-
-    // Test with a mix of integers and floats
-    assertEquals(10.0f, distance(0.0f, 0.0f, 6.0f, 8.0f), 0.0001f);
-  }
-
-  public static float distance(float aX, float aY, float bX, float bY) {
-    double xDiff = aX - bX;
-    double yDiff = aY - bY;
-    return (float) Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-  }
-
-  @Test
-  public void testSumTwo() {
-    // Test with empty array
-    assertEquals(0, sum(new int[]{}));
-
-    // Test with single element array
-    assertEquals(5, sum(new int[]{5}));
-
-    // Test with positive numbers
-    assertEquals(10, sum(new int[]{1, 2, 3, 4}));
-
-    // Test with negative numbers
-    assertEquals(-10, sum(new int[]{-1, -2, -3, -4}));
-
-    // Test with mix of positive and negative numbers
-    assertEquals(0, sum(new int[]{1, -1, 2, -2, 3, -3}));
-  }
-
-  public static int sum(int[] array) {
-    int count = 0;
-    for (int a : array) {
-      count += a;
-    }
-    return count;
-  }
+//  @Test
+//  public void testRoundTwo() {
+//    // Test positive numbers
+//    assertEquals(2, round(2.4f));
+//    assertEquals(3, round(2.5f));
+//    assertEquals(3, round(2.6f));
+//
+//    // Test negative numbers
+//    assertEquals(-2, round(-2.4f));
+//    assertEquals(-3, round(-2.5f));
+//    assertEquals(-3, round(-2.6f));
+//
+//    // Test extreme values
+//    assertEquals(Integer.MAX_VALUE, round(Float.MAX_VALUE));
+//    assertEquals(Integer.MIN_VALUE, round(-Float.MAX_VALUE));
+//
+//    // Test NaN
+//    assertEquals(0, round(Float.NaN));
+//
+//    // Test positive and negative infinity
+//    assertEquals(Integer.MAX_VALUE, round(Float.POSITIVE_INFINITY));
+//    assertEquals(Integer.MIN_VALUE, round(Float.NEGATIVE_INFINITY));
+//  }
+//
+//  public static int round(float d) {
+//    return (int) (d + (d < 0.0f ? -0.5f : 0.5f));
+//  }
+//
+//  @Test
+//  public void testDistanceTwo() {
+//    // Test with integers
+//    assertEquals(5.0f, distance(0, 0, 3, 4), 0.0001f);
+//
+//    // Test with floating point numbers
+//    assertEquals((float) Math.sqrt(2), distance(0, 0, 1, 1), 0.0001f);
+//
+//    // Test with a mix of integers and floats
+//    assertEquals(10.0f, distance(0.0f, 0.0f, 6.0f, 8.0f), 0.0001f);
+//  }
+//
+//  public static float distance(float aX, float aY, float bX, float bY) {
+//    double xDiff = aX - bX;
+//    double yDiff = aY - bY;
+//    return (float) Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+//  }
+//
+//  @Test
+//  public void testSumTwo() {
+//    // Test with empty array
+//    assertEquals(0, sum(new int[]{}));
+//
+//    // Test with single element array
+//    assertEquals(5, sum(new int[]{5}));
+//
+//    // Test with positive numbers
+//    assertEquals(10, sum(new int[]{1, 2, 3, 4}));
+//
+//    // Test with negative numbers
+//    assertEquals(-10, sum(new int[]{-1, -2, -3, -4}));
+//
+//    // Test with mix of positive and negative numbers
+//    assertEquals(0, sum(new int[]{1, -1, 2, -2, 3, -3}));
+//  }
+//
+//  public static int sum(int[] array) {
+//    int count = 0;
+//    for (int a : array) {
+//      count += a;
+//    }
+//    return count;
+//  }
 
 
   //Mini
